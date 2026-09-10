@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+:root {
+  /* Brand */
+  --primary: #003d9b;
+  --primary-container: #0052cc;
+
+  /* Surfaces */
+  --surface-highest: #d7e2ff;
+  --surface-medium: #737685;
+  --surface-low: #f1f3ff;
+  --background: #f9f9ff;
+
+  /* Slate */
+  --slate-dark: #041b3c;
+  --slate-medium: #4f5f7b;
+  --slate-light: #c3c6d6;
+
+  /* Semantic */
+  --success: #82f9be;
+  --error: #ba1a1a;
+  --warning: #ffb300;
+
+  /* Foreground */
+  --foreground: #041b3c;
+}
+
+@theme inline {
+  /* Brand */
+  --color-primary: var(--primary);
+  --color-primary-container: var(--primary-container);
+
+  /* Surfaces */
+  --color-surface-highest: var(--surface-highest);
+  --color-surface-medium: var(--surface-medium);
+  --color-surface-low: var(--surface-low);
+  --color-background: var(--background);
+
+  /* Slate */
+  --color-slate-dark: var(--slate-dark);
+  --color-slate-medium: var(--slate-medium);
+  --color-slate-light: var(--slate-light);
+
+  /* Semantic */
+  --color-success: var(--success);
+  --color-error: var(--error);
+  --color-warning: var(--warning);
+
+  /* Foreground */
+  --color-foreground: var(--foreground);
+
+  /* Fonts */
+  --font-inter: var(--font-inter-family);
+
+  --text-display-lg: 3.5rem;
+  --text-display-lg--font-weight: 700;
+
+  --text-headline-lg: 2rem;
+  --text-headline-lg--font-weight: 600;
+
+  --text-title-md: 1.125rem;
+  --text-title-md--font-weight: 500;
+
+  --text-body-md: 0.875rem;
+  --text-body-md--font-weight: 400;
+
+  --text-label-sm: 0.6875rem;
+  --text-label-sm--font-weight: 700;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter-family), Arial, Helvetica, sans-serif;
+}
