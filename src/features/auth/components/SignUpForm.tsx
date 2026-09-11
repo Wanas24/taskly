@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { signUpSchema, type SignUpFormData } from "../schemas/sign-up.schema";
 
-import { signUp } from "../services/auth.service";
+import { signUp } from "../services/sign-up.service";
 import Input from "@/components/ui/Input";
 
 import eyeIcon from "@/assets/icons/eye.svg";
@@ -15,7 +15,9 @@ import eyeOffIcon from "@/assets/icons/eye-off.svg";
 import Image from "next/image";
 import PasswordRequirements from "./PasswordRequirements";
 import Button from "@/components/ui/Button";
-import Link from "next/link";
+import AuthFormHeader from "./AuthFormHeader";
+import AuthFormFooter from "./AuthFormFooter";
+import Alert from "@/components/ui/Alert";
 
 export default function SignUpForm() {
   const router = useRouter();
@@ -60,12 +62,11 @@ export default function SignUpForm() {
       className="mb-12 max-w-xl m-auto bg-white max-sm:bg-transparent shadow-[0_24px_48px_0_#041B3C0F] max-sm:shadow-none rounded-lg"
     >
       <div className="p-12 max-sm:p-6">
-        <div className="flex flex-col gap-2 text-center max-sm:text-start mb-10">
-          <h2 className="font-semibold text-3xl">Create your workspace</h2>
-          <p className="text-sm text-slate-medium">
-            Join the editorial approach to task management.
-          </p>
-        </div>
+        <AuthFormHeader
+          title="Create your workspace"
+          subTitle="Join the editorial approach to task management."
+        />
+
         <Input
           id="name"
           label="Name"
@@ -118,14 +119,8 @@ export default function SignUpForm() {
           />
         </div>
 
-        {apiError && (
-          <div
-            role="alert"
-            className="rounded-lg border border-error/20 bg-error/5 px-4 py-3 text-sm text-error"
-          >
-            {apiError}
-          </div>
-        )}
+        <Alert message={apiError} />
+
         <PasswordRequirements
           minLength={passwordRequirements.minLength}
           hasLetterAndDigit={passwordRequirements.hasLetterAndDigit}
@@ -139,7 +134,8 @@ export default function SignUpForm() {
           children={isSubmitting ? "Creating account..." : "Create account"}
         />
 
-        <p className="text-center mt-12 text-sm text-slate-medium">Already have an account? <span className="text-primary font-semibold"><Link href="/login" >Log in</Link> </span></p>
+        <AuthFormFooter text="Already have an account?" route="/login" routeText="Log in" />
+
       </div>
     </form>
   );

@@ -1,7 +1,12 @@
+import AuthFormLogo from "@/features/auth/components/AuthFormLogo"
+import LogInForm from "@/features/auth/components/LogInForm"
 
 function page() {
   return (
-    <div>login page</div>
+    <div>
+      <AuthFormLogo/>
+      <LogInForm/>
+    </div>
   )
 }
 
