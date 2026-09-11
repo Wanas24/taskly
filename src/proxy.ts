@@ -1,10 +1,14 @@
 import { createServerClient } from "@supabase/ssr";
-import { NextResponse, type NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function proxy(request: NextRequest) {
+  console.log("1 - proxy started");
+
   let response = NextResponse.next({
     request,
   });
+
+  console.log("2 - response created");
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -12,10 +16,13 @@ export async function proxy(request: NextRequest) {
     {
       cookies: {
         getAll() {
+          console.log("3 - getAll cookies");
           return request.cookies.getAll();
         },
 
         setAll(cookiesToSet) {
+          console.log("4 - setAll cookies");
+
           cookiesToSet.forEach(({ name, value, options }) => {
             request.cookies.set(name, value);
             response.cookies.set(name, value, options);
@@ -25,12 +32,22 @@ export async function proxy(request: NextRequest) {
     },
   );
 
+  console.log("5 - supabase created");
+
   const {
     data: { user },
+    error,
   } = await supabase.auth.getUser();
+
+  console.log("6 - getUser finished", {
+    hasUser: !!user,
+    error: error?.message,
+  });
 
   const isProtectedRoute =
     request.nextUrl.pathname.startsWith("/project");
+
+  console.log("7 - protected route", isProtectedRoute);
 
   if (isProtectedRoute) {
     const authMode = request.cookies.get("taskly-auth-mode")?.value;
@@ -38,13 +55,22 @@ export async function proxy(request: NextRequest) {
       "taskly-browser-session",
     )?.value;
 
+    console.log("8 - auth cookies", {
+      authMode,
+      hasBrowserSession: !!browserSession,
+    });
+
     if (!user) {
+      console.log("9 - redirect login");
+
       return NextResponse.redirect(
         new URL("/login", request.url),
       );
     }
 
     if (authMode !== "remember" && !browserSession) {
+      console.log("10 - signing out");
+
       await supabase.auth.signOut();
 
       return NextResponse.redirect(
@@ -53,9 +79,7 @@ export async function proxy(request: NextRequest) {
     }
   }
 
+  console.log("11 - returning response");
+
   return response;
 }
-
-export const config = {
-  matcher: ["/project/:path*"],
-};
