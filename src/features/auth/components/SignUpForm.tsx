@@ -5,7 +5,11 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { signUpSchema, type SignUpFormData } from "../schemas/signup.schema";
+import {
+  getPasswordRequirements,
+  signUpSchema,
+  type SignUpFormData,
+} from "../schemas/signup.schema";
 
 import { useSignUp } from "../hooks/useSignUp";
 import Input from "@/components/ui/Input";
@@ -33,14 +37,7 @@ export default function SignUpForm() {
     resolver: zodResolver(signUpSchema),
   });
   const password = watch("password", "");
-  const passwordRequirements = {
-    minLength: password.length >= 8,
-    uppercase: /[A-Z]/.test(password),
-    lowercase: /[a-z]/.test(password),
-    digit: /[0-9]/.test(password),
-    special: /[!@#$%^&*]/.test(password),
-    hasLetterAndDigit: /[A-Z]/.test(password) && /[a-z]/.test(password) && /[0-8]/.test(password),
-  };
+ const passwordRequirements = getPasswordRequirements(password);
 
   const onSubmit = async (data: SignUpFormData) => {
   try {
