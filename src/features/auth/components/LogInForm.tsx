@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { login } from "../services/login.service";
+import { useLogin } from "../hooks/useLogin";
 import Input from "@/components/ui/Input";
 
 import eyeIcon from "@/assets/icons/eye.svg";
@@ -21,7 +21,7 @@ import Alert from "@/components/ui/Alert";
 
 export default function LogInForm() {
   const router = useRouter();
-  const [apiError, setApiError] = useState("");
+  const { login, error: apiError } = useLogin();
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -32,19 +32,15 @@ export default function LogInForm() {
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = async (data: LoginFormData) => {
-    setApiError("");
+const onSubmit = async (data: LoginFormData) => {
+  try {
+    await login(data);
 
-    try {
-      await login(data);
-
-      router.push("/project");
-    } catch (error) {
-      setApiError(
-        error instanceof Error ? error.message : "Something went wrong. Please try again.",
-      );
-    }
-  };
+    router.push("/project");
+  } catch {
+    // Error is already handled by useLogin
+  }
+};
 
   return (
     <form

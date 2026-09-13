@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { signUpSchema, type SignUpFormData } from "../schemas/sign-up.schema";
 
-import { signUp } from "../services/sign-up.service";
+import { useSignUp } from "../hooks/useSignUp";
 import Input from "@/components/ui/Input";
 
 import eyeIcon from "@/assets/icons/eye.svg";
@@ -21,7 +21,7 @@ import Alert from "@/components/ui/Alert";
 
 export default function SignUpForm() {
   const router = useRouter();
-  const [apiError, setApiError] = useState("");
+  const { signUp, error: apiError } = useSignUp();
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -43,18 +43,14 @@ export default function SignUpForm() {
   };
 
   const onSubmit = async (data: SignUpFormData) => {
-    setApiError("");
+  try {
+    await signUp(data);
 
-    try {
-      await signUp(data);
-
-      router.push("/login");
-    } catch (error) {
-      setApiError(
-        error instanceof Error ? error.message : "Something went wrong. Please try again.",
-      );
-    }
-  };
+    router.push("/login");
+  } catch {
+    // Error is already handled by useSignUp
+  }
+};
 
   return (
     <form
