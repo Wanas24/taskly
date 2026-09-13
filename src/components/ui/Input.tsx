@@ -31,14 +31,23 @@ export default function Input({
         <input
           ref={ref}
           id={id}
+          aria-describedby={error && id ? `${id}-error` : undefined}
           {...props}
           className="h-12 w-full rounded-sm bg-surface-highest px-4 py-3.5 text-base placeholder-surface-medium outline-none"
         />
 
-        {endElement && <div className="absolute end-4 top-1/2 -translate-y-1/2 end-[16.5px] cursor-pointer">{endElement}</div>}
+        {endElement && (
+          <div className="absolute end-4 top-1/2 -translate-y-1/2 end-[16.5px] cursor-pointer">
+            {endElement}
+          </div>
+        )}
       </div>
 
-      {error && <p className="text-sm text-error">{error}</p>}
+      {error && (
+        <p id={id ? `${id}-error` : undefined} role="alert" className="text-sm text-error">
+          {error}
+        </p>
+      )}
     </div>
   );
 }
