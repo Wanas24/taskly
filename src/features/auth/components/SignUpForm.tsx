@@ -27,6 +27,7 @@ export default function SignUpForm() {
   const router = useRouter();
   const { signUp, error: apiError } = useSignUp();
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const {
     register,
@@ -105,10 +106,17 @@ export default function SignUpForm() {
           <Input
             id="confirmPassword"
             label="Confirm Password"
-            type="password"
+            type={showConfirmPassword ? "text" : "password"}
             placeholder="Repeat your password"
             {...register("confirmPassword")}
             error={errors.confirmPassword?.message}
+             endElement={
+              <Image
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                src={showConfirmPassword ? eyeOffIcon : eyeIcon}
+                alt="Show password"
+              />
+            }
           />
         </div>
 
