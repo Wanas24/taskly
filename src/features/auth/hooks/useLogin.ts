@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import { login as loginService } from "../services/login.service";
-import type { LoginFormData } from "../schemas/login-schema";
+import type { LoginFormData } from "../schemas/login.schema";
 
 export function useLogin() {
   const [error, setError] = useState("");

@@ -1,5 +1,5 @@
 import { createClient } from "@/lib/supabase/client";
-import { LoginFormData } from "../schemas/login-schema";
+import { LoginFormData } from "../schemas/login.schema";
 import { setAuthMode } from "@/lib/auth/session";
 
 export async function login(data: LoginFormData) {

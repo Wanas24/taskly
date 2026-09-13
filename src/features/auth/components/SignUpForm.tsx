@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { signUpSchema, type SignUpFormData } from "../schemas/sign-up.schema";
+import { signUpSchema, type SignUpFormData } from "../schemas/signup.schema";
 
 import { useSignUp } from "../hooks/useSignUp";
 import Input from "@/components/ui/Input";

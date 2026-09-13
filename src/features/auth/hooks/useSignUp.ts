@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import { signUp as signUpService } from "../services/sign-up.service";
-import type { SignUpFormData } from "../schemas/sign-up.schema";
+import type { SignUpFormData } from "../schemas/signup.schema";
 
 export function useSignUp() {
   const [error, setError] = useState("");
