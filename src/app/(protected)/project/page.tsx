@@ -1,6 +1,6 @@
 import LogoutButton from "@/components/ui/LogoutButton";
 
-function page() {
+function ProjectPage() {
   return (
     <>
       <div>Project page</div>
@@ -9,4 +9,4 @@ function page() {
   );
 }
 
-export default page;
+export default ProjectPage;
