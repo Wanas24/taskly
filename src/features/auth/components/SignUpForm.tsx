@@ -17,11 +17,11 @@ import Input from "@/components/ui/Input";
 import eyeIcon from "@/assets/icons/eye.svg";
 import eyeOffIcon from "@/assets/icons/eye-off.svg";
 import Image from "next/image";
-import PasswordRequirements from "./PasswordRequirements";
 import Button from "@/components/ui/Button";
 import AuthFormHeader from "./AuthFormHeader";
 import AuthFormFooter from "./AuthFormFooter";
 import Alert from "@/components/ui/Alert";
+import PasswordRequirementsField from "./PasswordRequirementsField";
 
 export default function SignUpForm() {
   const router = useRouter();
@@ -32,13 +32,11 @@ export default function SignUpForm() {
   const {
     register,
     handleSubmit,
-    watch,
+    control,
     formState: { errors, isSubmitting },
   } = useForm<SignUpFormData>({
     resolver: zodResolver(signUpSchema),
   });
-  const password = watch("password", "");
-  const passwordRequirements = getPasswordRequirements(password);
 
   const onSubmit = async (data: SignUpFormData) => {
     try {
@@ -122,11 +120,7 @@ export default function SignUpForm() {
 
         <Alert message={apiError} />
 
-        <PasswordRequirements
-          minLength={passwordRequirements.minLength}
-          hasLetterAndDigit={passwordRequirements.hasLetterAndDigit}
-          special={passwordRequirements.special}
-        />
+       <PasswordRequirementsField control={control} />
 
         <Button
           className="w-full"
