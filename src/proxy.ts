@@ -29,8 +29,22 @@ export async function proxy(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const isProtectedRoute =
-    request.nextUrl.pathname.startsWith("/project");
+  const pathname = request.nextUrl.pathname;
+
+  // Handle home route
+  if (pathname === "/") {
+    if (user) {
+      return NextResponse.redirect(
+        new URL("/project", request.url),
+      );
+    }
+
+    return NextResponse.redirect(
+      new URL("/login", request.url),
+    );
+  }
+
+  const isProtectedRoute = pathname.startsWith("/project");
 
   if (isProtectedRoute) {
     const authMode = request.cookies.get("taskly-auth-mode")?.value;
@@ -57,5 +71,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/project/:path*"],
+  matcher: ["/", "/project/:path*"],
 };
