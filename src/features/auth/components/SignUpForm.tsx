@@ -37,17 +37,17 @@ export default function SignUpForm() {
     resolver: zodResolver(signUpSchema),
   });
   const password = watch("password", "");
- const passwordRequirements = getPasswordRequirements(password);
+  const passwordRequirements = getPasswordRequirements(password);
 
   const onSubmit = async (data: SignUpFormData) => {
-  try {
-    await signUp(data);
+    try {
+      await signUp(data);
 
-    router.push("/login");
-  } catch {
-    // Error is already handled by useSignUp
-  }
-};
+      router.push("/login");
+    } catch {
+      // Error is already handled by useSignUp
+    }
+  };
 
   return (
     <form
@@ -128,7 +128,6 @@ export default function SignUpForm() {
         />
 
         <AuthFormFooter text="Already have an account?" route="/login" routeText="Log in" />
-
       </div>
     </form>
   );
