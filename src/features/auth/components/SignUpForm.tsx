@@ -93,11 +93,15 @@ export default function SignUpForm() {
             {...register("password")}
             error={errors.password?.message}
             endElement={
-              <Image
-                onClick={() => setShowPassword(!showPassword)}
-                src={showPassword ? eyeOffIcon : eyeIcon}
-                alt="Show password"
-              />
+              <button
+                className="cursor-pointer"
+                type="button"
+                aria-label={showPassword ? "Hide password" : "Show password"}
+                aria-pressed={showPassword}
+                onClick={() => setShowPassword((current) => !current)}
+              >
+                <Image src={showPassword ? eyeOffIcon : eyeIcon} alt="" />
+              </button>
             }
           />
 
@@ -108,25 +112,27 @@ export default function SignUpForm() {
             placeholder="Repeat your password"
             {...register("confirmPassword")}
             error={errors.confirmPassword?.message}
-             endElement={
-              <Image
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                src={showConfirmPassword ? eyeOffIcon : eyeIcon}
-                alt="Show password"
-              />
+            endElement={
+              <button
+                className="cursor-pointer"
+                type="button"
+                aria-label={showConfirmPassword ? "Hide confirm password" : "Show confirm password"}
+                aria-pressed={showConfirmPassword}
+                onClick={() => setShowConfirmPassword((current) => !current)}
+              >
+                <Image src={showConfirmPassword ? eyeOffIcon : eyeIcon} alt="" />
+              </button>
             }
           />
         </div>
 
         <Alert message={apiError} />
 
-       <PasswordRequirementsField control={control} />
+        <PasswordRequirementsField control={control} />
 
-        <Button
-          className="w-full"
-          type="submit"
-          disabled={isSubmitting}
-        >{isSubmitting ? "Creating account..." : "Create account"}</Button>
+        <Button className="w-full" type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Creating account..." : "Create account"}
+        </Button>
 
         <AuthFormFooter text="Already have an account?" route="/login" routeText="Log in" />
       </div>
