@@ -1,6 +1,5 @@
 import { createClient } from "@/lib/supabase/client";
 import { LoginFormData } from "../schemas/login.schema";
-import { setAuthMode } from "@/lib/auth/session";
 
 export async function login(data: LoginFormData) {
   const supabase = createClient();
@@ -12,9 +11,6 @@ export async function login(data: LoginFormData) {
   if (error) {
     throw new Error(error.message);
   }
-
-  setAuthMode(data.rememberMe);
-
 
   return result;
 }

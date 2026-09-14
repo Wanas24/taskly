@@ -13,10 +13,6 @@ export default function LogoutButton() {
 
     const { error: signOutError } = await supabase.auth.signOut();
 
-    // Always clear local session cookies, even if Supabase signOut fails.
-    document.cookie = "taskly-auth-mode=; path=/; max-age=0";
-    document.cookie = "taskly-browser-session=; path=/; max-age=0";
-
     if (signOutError) {
       setError("Logout failed. Please try again.");
       return;

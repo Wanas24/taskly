@@ -43,24 +43,10 @@ export async function proxy(request: NextRequest) {
   // Protect project routes
   const isProtectedRoute = pathname.startsWith("/project");
 
-  if (isProtectedRoute) {
-    const authMode = request.cookies.get("taskly-auth-mode")?.value;
-
-    const browserSession = request.cookies.get("taskly-browser-session")?.value;
-
-    // No authenticated user
-    if (!user) {
-      return NextResponse.redirect(new URL("/login", request.url));
-    }
-
-    // Session expired because Remember Me was not enabled
-    if (authMode !== "remember" && !browserSession) {
-      await supabase.auth.signOut();
-
-      return NextResponse.redirect(new URL("/login", request.url));
-    }
+  if (isProtectedRoute && !user) {
+    return NextResponse.redirect(
+      new URL("/login", request.url));
   }
-
   return response;
 }
 
