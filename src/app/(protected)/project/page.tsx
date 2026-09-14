@@ -1,4 +1,4 @@
-import LogoutButton from "@/components/ui/LogoutButton";
+import LogoutButton from "@/features/auth/components/LogoutButton";
 
 function ProjectPage() {
   return (
