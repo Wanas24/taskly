@@ -32,15 +32,15 @@ export default function LogInForm() {
     resolver: zodResolver(loginSchema),
   });
 
-const onSubmit = async (data: LoginFormData) => {
-  try {
-    await login(data);
+  const onSubmit = async (data: LoginFormData) => {
+    try {
+      await login(data);
 
-    router.push("/project");
-  } catch {
-    // Error is already handled by useLogin
-  }
-};
+      router.push("/project");
+    } catch {
+      // Error is already handled by useLogin
+    }
+  };
 
   return (
     <form
@@ -78,11 +78,14 @@ const onSubmit = async (data: LoginFormData) => {
         <div className="py-2 mb-6 flex gap-2 items-center justify-between">
           <div className=" flex gap-2 items-center">
             <input
+              id="rememberMe"
               type="checkbox"
               {...register("rememberMe")}
               className="h-4 w-4 appearance-none rounded-xs border border-slate-light bg-surface-low checked:border-primary checked:bg-primary"
             />
-            <p className="font-medium text-sm text-[#434654]">Remember Me</p>
+            <label htmlFor="rememberMe" className="font-medium text-sm text-[#434654]">
+              Remember Me
+            </label>
           </div>
           <Link href="/forget-password" className="font-medium text-sm text-primary">
             Forgot Password?
@@ -91,11 +94,7 @@ const onSubmit = async (data: LoginFormData) => {
 
         <Alert message={apiError} />
 
-        <Button
-          className="w-full"
-          type="submit"
-          disabled={isSubmitting}
-        >
+        <Button className="w-full" type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Logging in..." : "Log in"}
         </Button>
 
