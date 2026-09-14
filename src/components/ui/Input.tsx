@@ -31,6 +31,7 @@ export default function Input({
         <input
           ref={ref}
           id={id}
+          aria-invalid={!!error}
           aria-describedby={error && id ? `${id}-error` : undefined}
           {...props}
           className="h-12 w-full rounded-sm bg-surface-highest px-4 py-3.5 text-base placeholder-surface-medium outline-none"
