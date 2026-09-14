@@ -89,6 +89,7 @@ export default function SignUpForm() {
             id="password"
             label="Password"
             type={showPassword ? "text" : "password"}
+            aria-describedby="password-requirements"
             placeholder="Password"
             {...register("password")}
             error={errors.password?.message}
