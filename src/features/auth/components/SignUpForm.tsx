@@ -126,8 +126,7 @@ export default function SignUpForm() {
           className="w-full"
           type="submit"
           disabled={isSubmitting}
-          children={isSubmitting ? "Creating account..." : "Create account"}
-        />
+        >{isSubmitting ? "Creating account..." : "Create account"}</Button>
 
         <AuthFormFooter text="Already have an account?" route="/login" routeText="Log in" />
       </div>

@@ -95,8 +95,10 @@ const onSubmit = async (data: LoginFormData) => {
           className="w-full"
           type="submit"
           disabled={isSubmitting}
-          children={isSubmitting ? "Logging in..." : "Log in"}
-        />
+        >
+          {isSubmitting ? "Logging in..." : "Log in"}
+        </Button>
+
         <AuthFormFooter text="Don't have an account?" route="/sign-up" routeText="Sign up" />
       </div>
     </form>
