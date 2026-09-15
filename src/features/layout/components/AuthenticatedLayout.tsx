@@ -1,15 +1,19 @@
 import type { ReactNode } from "react";
+import Navbar from "./Navbar";
+import Sidebar from "./Sidebar";
 
 type AuthenticatedLayoutProps = {
   children: ReactNode;
 };
 
-export default function AuthenticatedLayout({
-  children,
-}: AuthenticatedLayoutProps) {
+export default function AuthenticatedLayout({ children }: AuthenticatedLayoutProps) {
   return (
-    <div className="h-screen">
-      {children}
-    </div>
+    <main className="h-screen flex">
+      <Sidebar />
+      <div className="grow flex-col ">
+        <Navbar />
+        {children}
+      </div>
+    </main>
   );
 }
