@@ -1,13 +1,25 @@
-import LogoutButton from "./LogoutButton"
-import SidebarCollapseButton from "./SidebarCollapseButton"
+import LogoutButton from "./LogoutButton";
+import SidebarCollapseButton from "./SidebarCollapseButton";
 
-function SidebarFooter() {
+type SidebarFooterProps = {
+  isCollapsed: boolean;
+  onCollapse: () => void;
+};
+
+function SidebarFooter({
+  isCollapsed,
+  onCollapse,
+}: SidebarFooterProps) {
   return (
     <div>
-        <SidebarCollapseButton/>
-        <LogoutButton/>
+      <SidebarCollapseButton
+        isCollapsed={isCollapsed}
+        onClick={onCollapse}
+      />
+
+      <LogoutButton isCollapsed={isCollapsed} />
     </div>
-  )
+  );
 }
 
-export default SidebarFooter
+export default SidebarFooter;

@@ -1,9 +1,19 @@
 "use client";
 
 import { useState } from "react";
+import logoutIcon from "@/assets/icons/logout.svg";
+
 import { createClient } from "@/lib/supabase/client";
 
-export default function LogoutButton() {
+import SidebarFooterButton from "./SidebarFooterButton";
+
+type LogoutButtonProps = {
+  isCollapsed: boolean;
+};
+
+export default function LogoutButton({
+  isCollapsed,
+}: LogoutButtonProps) {
   const [error, setError] = useState("");
 
   const handleLogout = async () => {
@@ -23,11 +33,15 @@ export default function LogoutButton() {
 
   return (
     <div>
-      <button type="button" onClick={handleLogout}>
-        Logout
-      </button>
+      <SidebarFooterButton
+        icon={logoutIcon}
+        label="Logout"
+        ariaLabel="Logout"
+        isCollapsed={isCollapsed}
+        onClick={handleLogout}
+      />
 
-      {error && (
+      {error && !isCollapsed && (
         <p role="alert" className="mt-2 text-sm text-error">
           {error}
         </p>
