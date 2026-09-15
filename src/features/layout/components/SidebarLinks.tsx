@@ -21,12 +21,11 @@ function SidebarLinks() {
     <nav className="flex flex-col gap-1">
       {links.map((link) => {
         const Icon = link.icon;
-
         return (
           <Link
             key={link.href}
             href={link.href}
-            className="group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-100 hover:text-primary"
+            className="group p-3 rounded-sm flex items-center gap-3 text-base font-medium text-slate-dark transition hover:bg-white hover:text-primary"
           >
             <Icon className="h-5 w-5" />
 
