@@ -20,6 +20,7 @@ function SidebarCollapseButton({
       ariaLabel={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
       isCollapsed={isCollapsed}
       onClick={onClick}
+      className="text-slate-dark"
     />
   );
 }

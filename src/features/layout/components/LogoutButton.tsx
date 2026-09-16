@@ -39,6 +39,7 @@ export default function LogoutButton({
         ariaLabel="Logout"
         isCollapsed={isCollapsed}
         onClick={handleLogout}
+        className="text-error"
       />
 
       {error && !isCollapsed && (
