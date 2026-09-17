@@ -5,6 +5,7 @@ import { useState } from "react";
 import SidebarFooter from "./SidebarFooter";
 import SidebarLinks from "./SidebarLinks";
 import SidebarHeader from "./SidebarHeader";
+import ActiveProjectAccordion from "./ActiveProjectAccordion";
 
 type SidebarProps = {
   isOpen: boolean;
@@ -29,6 +30,8 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           <SidebarHeader isOpen={isOpen} onClose={onClose} isCollapsed={isCollapsed} />
 
           <SidebarLinks isCollapsed={isCollapsed} />
+
+          <ActiveProjectAccordion isCollapsed={isCollapsed} />
         </div>
 
         <div className="border-t border-[#C3C6D633] pt-6">
