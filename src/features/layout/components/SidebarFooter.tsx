@@ -11,7 +11,7 @@ function SidebarFooter({
   onCollapse,
 }: SidebarFooterProps) {
   return (
-    <div>
+    <div className="flex flex-col gap-1">
       <SidebarCollapseButton
         isCollapsed={isCollapsed}
         onClick={onCollapse}

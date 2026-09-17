@@ -11,8 +11,12 @@ export default function Sidebar() {
 
   return (
     <aside className="shrink-0 bg-surface-low">
-      <div className="flex h-full flex-col justify-between px-4">
-        <div className="flex flex-col">
+      <div
+        className={`flex h-full flex-col justify-between p-4 ${
+          isCollapsed ? "w-fit" : "w-[244px]"
+        }`}
+      >
+        <div className="flex flex-col gap-8">
           <SidebarLogo isCollapsed={isCollapsed} />
           <SidebarLinks isCollapsed={isCollapsed} />
         </div>

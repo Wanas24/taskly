@@ -8,7 +8,7 @@ type SidebarLogoProps = {
 function SidebarLogo({ isCollapsed }: SidebarLogoProps) {
   return (
     <div className="flex h-16 items-center">
-      <div className="px-3 flex items-center gap-2">
+      <div className="px-3 flex items-center gap-2 ">
       <Image src={logo} alt="Taskly" className="object-contain" />
         {!isCollapsed && (
           <span className="text-lg font-bold text-slate-900">

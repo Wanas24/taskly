@@ -30,7 +30,7 @@ function SidebarLinks({ isCollapsed }: SidebarLinksProps) {
           <Link
             key={link.href}
             href={link.href}
-            className={`group flex items-center rounded-sm p-3 text-base font-medium text-slate-dark transition hover:bg-white hover:text-primary ${
+            className={`group flex rounded-sm py-2.5 px-3 text-sm font-medium text-slate-dark transition hover:bg-white hover:text-primary ${
               isCollapsed ? "justify-center" : "gap-3"
             }`}
           >
