@@ -5,7 +5,7 @@ import UserInfo from "./UserInfo";
 import burgerMenu from "@/assets/icons/burger-menu.svg";
 
 type NavbarProps = {
-  onMenuClick?: () => void;
+  onMenuClick: () => void;
 };
 
 export default function Navbar({ onMenuClick }: NavbarProps) {

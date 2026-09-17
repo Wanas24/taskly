@@ -4,20 +4,30 @@ import { useState } from "react";
 
 import SidebarFooter from "./SidebarFooter";
 import SidebarLinks from "./SidebarLinks";
-import SidebarLogo from "./SidebarLogo";
+import SidebarHeader from "./SidebarHeader";
 
-export default function Sidebar() {
+type SidebarProps = {
+  isOpen: boolean;
+  onClose: () => void;
+};
+
+export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   return (
-    <aside className="shrink-0 bg-surface-low max-sm:hidden">
+    <aside
+      className={`shrink-0 bg-surface-low ${
+        isOpen ? "fixed inset-0 z-50 w-full" : "max-sm:hidden"
+      }`}
+    >
       <div
         className={`flex h-full flex-col justify-between p-4 ${
-          isCollapsed ? "w-fit" : "w-[244px]"
+          isOpen ? "w-full" : isCollapsed ? "w-fit" : "w-[244px]"
         }`}
       >
         <div className="flex flex-col gap-8">
-          <SidebarLogo isCollapsed={isCollapsed} />
+          <SidebarHeader isOpen={isOpen} onClose={onClose} isCollapsed={isCollapsed} />
+
           <SidebarLinks isCollapsed={isCollapsed} />
         </div>
 
@@ -25,7 +35,7 @@ export default function Sidebar() {
           <SidebarFooter
             isCollapsed={isCollapsed}
             onCollapse={() => setIsCollapsed((prev) => !prev)}
-          />{" "}
+          />
         </div>
       </div>
     </aside>
