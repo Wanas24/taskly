@@ -10,7 +10,7 @@ export default function Sidebar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   return (
-    <aside className="shrink-0 bg-surface-low">
+    <aside className="shrink-0 bg-surface-low max-sm:hidden">
       <div
         className={`flex h-full flex-col justify-between p-4 ${
           isCollapsed ? "w-fit" : "w-[244px]"

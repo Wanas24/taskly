@@ -1,29 +1,16 @@
 import Link from "next/link";
-
-import ProjectsIcon from "@/assets/icons/Projects";
-import StatisticsIcon from "@/assets/icons/Statistics";
+import { navigationLinks } from "../data/navigationLinks";
 
 type SidebarLinksProps = {
   isCollapsed: boolean;
 };
 
 function SidebarLinks({ isCollapsed }: SidebarLinksProps) {
-  const links = [
-    {
-      label: "Projects",
-      href: "/project",
-      icon: ProjectsIcon,
-    },
-    {
-      label: "Statistics",
-      href: "/project/statistics",
-      icon: StatisticsIcon,
-    },
-  ];
+  
 
   return (
     <nav className="flex flex-col gap-1">
-      {links.map((link) => {
+      {navigationLinks.map((link) => {
         const Icon = link.icon;
 
         return (
