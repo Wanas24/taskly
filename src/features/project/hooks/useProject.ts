@@ -1,21 +1,21 @@
 "use client";
 
+"use client";
+
 import { useCallback, useEffect, useState } from "react";
 
 import { createClient } from "@/lib/supabase/client";
 
-import {
-  getProjects,
-  type Project,
-} from "../services/get-projects.service";
+import { getProject } from "../services/get-project.service";
+import type { Project } from "../services/get-projects.service";
 
-export function useProjects() {
-  const [projects, setProjects] = useState<Project[]>([]);
+export function useProject(projectId: string) {
+  const [project, setProject] = useState<Project | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const [errorStatus, setErrorStatus] = useState<number | null>(null);
 
-  const fetchProjects = useCallback(async () => {
+  const fetchProject = useCallback(async () => {
     setIsLoading(true);
     setError("");
     setErrorStatus(null);
@@ -37,20 +37,15 @@ export function useProjects() {
         throw error;
       }
 
-      const data = await getProjects(session.access_token);
+      const data = await getProject(projectId, session.access_token);
 
-      setProjects(data);
-      console.log(data)
+      setProject(data);
     } catch (error) {
       const message =
-        error instanceof Error
-          ? error.message
-          : "Failed To Get Projects, Try Again Later";
+        error instanceof Error ? error.message : "Failed To Get Project, Try Again Later";
 
       const status =
-        error instanceof Error &&
-        "status" in error &&
-        typeof error.status === "number"
+        error instanceof Error && "status" in error && typeof error.status === "number"
           ? error.status
           : null;
 
@@ -59,17 +54,17 @@ export function useProjects() {
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [projectId]);
 
   useEffect(() => {
-    fetchProjects();
-  }, [fetchProjects]);
+    fetchProject();
+  }, [fetchProject]);
 
   return {
-    projects,
+    project,
     isLoading,
     error,
     errorStatus,
-    refetch: fetchProjects,
+    refetch: fetchProject,
   };
 }
