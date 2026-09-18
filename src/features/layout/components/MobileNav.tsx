@@ -8,7 +8,7 @@ function MobileNav() {
   return (
     <nav
       aria-label="Mobile navigation"
-      className="hidden max-sm:absolute max-sm:bottom-0 max-sm:z-40 max-sm:block w-full"
+      className="hidden max-sm:fixed max-sm:bottom-0 max-sm:z-40 max-sm:block w-full"
     >
       <div className="flex items-center justify-between gap-6 bg-surface-low px-6 py-4">
         {projectLinks.slice(0, 2).map((link) => (
