@@ -38,6 +38,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           <SidebarFooter
             isCollapsed={isCollapsed}
             onCollapse={() => setIsCollapsed((prev) => !prev)}
+            isOpen={isOpen}
           />
         </div>
       </div>

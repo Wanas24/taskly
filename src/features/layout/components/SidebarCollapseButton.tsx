@@ -5,6 +5,7 @@ import collapseIcon from "@/assets/icons/arrow-left.svg";
 import SidebarFooterButton from "./SidebarFooterButton";
 
 type SidebarCollapseButtonProps = {
+  isOpen: boolean;
   isCollapsed: boolean;
   onClick: () => void;
 };
@@ -12,6 +13,7 @@ type SidebarCollapseButtonProps = {
 function SidebarCollapseButton({
   isCollapsed,
   onClick,
+  isOpen
 }: SidebarCollapseButtonProps) {
   return (
     <SidebarFooterButton
@@ -20,7 +22,7 @@ function SidebarCollapseButton({
       ariaLabel={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
       isCollapsed={isCollapsed}
       onClick={onClick}
-      className="text-slate-dark"
+      className={`text-slate-dark ${isOpen?"hidden": ''}`}
     />
   );
 }
