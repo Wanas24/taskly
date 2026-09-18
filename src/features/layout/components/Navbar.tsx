@@ -19,7 +19,7 @@ export default function Navbar({ onMenuClick }: NavbarProps) {
             aria-label="Open navigation menu"
             className="flex h-5 w-6.5  items-center justify-center"
           >
-            <Image src={burgerMenu} alt="burger menu" />
+            <Image src={burgerMenu} alt="" />
           </button>
           <h2 className="font-bold text-xl uppercase text-slate-dark">Taskly</h2>
         </div>

@@ -12,9 +12,6 @@ type ActiveProjectAccordionProps = {
   isCollapsed: boolean;
 };
 
-
-
-
 export default function ActiveProjectAccordion({
   isCollapsed,
 }: ActiveProjectAccordionProps) {
@@ -27,11 +24,17 @@ export default function ActiveProjectAccordion({
         <button
           type="button"
           onClick={() => setIsPopupOpen((prev) => !prev)}
+          aria-label={
+            isPopupOpen
+              ? "Close active project menu"
+              : "Open active project menu"
+          }
+          aria-expanded={isPopupOpen}
           className="flex w-full items-center justify-center rounded-md p-3 transition hover:bg-surface-highest"
         >
           <Image
             src={projectIcon}
-            alt="Active project"
+            alt=""
           />
         </button>
 
@@ -51,12 +54,17 @@ export default function ActiveProjectAccordion({
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
+        aria-expanded={isOpen}
+        aria-controls="active-project-links"
         className={`${
           isOpen ? "bg-surface-highest" : ""
         } flex w-full items-center justify-between rounded-t-md p-3 text-base font-medium text-slate-dark transition hover:bg-surface-highest`}
       >
         <div className="flex items-center gap-3">
-          <Image src={projectIcon} alt="project icon" />
+          <Image
+            src={projectIcon}
+            alt=""
+          />
 
           <span className="text-sm font-semibold text-slate-dark">
             Active Project
@@ -65,7 +73,7 @@ export default function ActiveProjectAccordion({
 
         <Image
           src={arrowTopIcon}
-          alt="arrow top icon"
+          alt=""
           className={`transition-transform ${
             isOpen ? "" : "rotate-180"
           }`}
@@ -73,10 +81,14 @@ export default function ActiveProjectAccordion({
       </button>
 
       {isOpen && (
-        <div className="flex flex-col gap-1 rounded-b-md bg-white p-2">
+        <div
+          id="active-project-links"
+          className="flex flex-col gap-1 rounded-b-md bg-white p-2"
+        >
           <ProjectLinks />
         </div>
       )}
     </div>
   );
 }
+

@@ -10,11 +10,7 @@ type SidebarCollapseButtonProps = {
   onClick: () => void;
 };
 
-function SidebarCollapseButton({
-  isCollapsed,
-  onClick,
-  isOpen
-}: SidebarCollapseButtonProps) {
+function SidebarCollapseButton({ isCollapsed, onClick, isOpen }: SidebarCollapseButtonProps) {
   return (
     <SidebarFooterButton
       icon={collapseIcon}
@@ -22,7 +18,7 @@ function SidebarCollapseButton({
       ariaLabel={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
       isCollapsed={isCollapsed}
       onClick={onClick}
-      className={`text-slate-dark ${isOpen?"hidden": ''}`}
+      className={`text-slate-dark ${isOpen ? "hidden" : ""}`}
     />
   );
 }

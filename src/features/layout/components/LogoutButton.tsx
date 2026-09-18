@@ -11,9 +11,7 @@ type LogoutButtonProps = {
   isCollapsed: boolean;
 };
 
-export default function LogoutButton({
-  isCollapsed,
-}: LogoutButtonProps) {
+export default function LogoutButton({ isCollapsed }: LogoutButtonProps) {
   const [error, setError] = useState("");
 
   const handleLogout = async () => {

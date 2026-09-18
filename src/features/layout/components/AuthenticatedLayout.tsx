@@ -13,11 +13,11 @@ type AuthenticatedLayoutProps = {
 export default function AuthenticatedLayout({
   children,
 }: AuthenticatedLayoutProps) {
-  
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <main className="flex h-screen">
+    <div className="flex h-screen">
       <Sidebar
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
@@ -32,6 +32,6 @@ export default function AuthenticatedLayout({
 
         <MobileNav />
       </div>
-    </main>
+    </div>
   );
 }

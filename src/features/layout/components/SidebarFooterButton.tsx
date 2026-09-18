@@ -5,7 +5,7 @@ type SidebarFooterButtonProps = {
   label?: string;
   ariaLabel: string;
   isCollapsed: boolean;
-  className?:string;
+  className?: string;
   onClick: () => void;
 };
 
@@ -15,16 +15,16 @@ export default function SidebarFooterButton({
   ariaLabel,
   isCollapsed,
   onClick,
-  className="",
+  className = "",
 }: SidebarFooterButtonProps) {
   return (
     <button
       type="button"
       onClick={onClick}
       aria-label={ariaLabel}
-      className={` flex items-center p-3 text-base font-medium F ${
+      className={`flex items-center p-3 text-base font-medium ${
         isCollapsed ? "justify-center" : "gap-3"
-      } ${className}`} 
+      } ${className}`}
     >
       <Image
         src={icon}

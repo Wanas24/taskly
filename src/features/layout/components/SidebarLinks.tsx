@@ -6,8 +6,6 @@ type SidebarLinksProps = {
 };
 
 function SidebarLinks({ isCollapsed }: SidebarLinksProps) {
-  
-
   return (
     <nav className="flex flex-col gap-1">
       {navigationLinks.map((link) => {
@@ -17,6 +15,7 @@ function SidebarLinks({ isCollapsed }: SidebarLinksProps) {
           <Link
             key={link.href}
             href={link.href}
+            aria-label={isCollapsed ? link.label : undefined}
             className={`group flex rounded-sm py-2.5 px-3 text-sm font-medium text-slate-dark transition hover:bg-white hover:text-primary ${
               isCollapsed ? "justify-center" : "gap-3"
             }`}

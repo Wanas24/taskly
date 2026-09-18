@@ -7,9 +7,7 @@ type ProjectLinksProps = {
   onLinkClick?: () => void;
 };
 
-export default function ProjectLinks({
-  onLinkClick,
-}: ProjectLinksProps) {
+export default function ProjectLinks({ onLinkClick }: ProjectLinksProps) {
   return (
     <div className="flex flex-col gap-1">
       {projectLinks.map((link) => (
@@ -26,4 +24,3 @@ export default function ProjectLinks({
     </div>
   );
 }
-

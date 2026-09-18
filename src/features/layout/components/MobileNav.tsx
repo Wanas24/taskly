@@ -1,45 +1,58 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { projectLinks } from "../data/projectLinks";
 import ProjectsIcon from "@/assets/icons/Projects";
 
 function MobileNav() {
   return (
-    <aside className="hidden max-sm:absolute max-sm:bottom-0 max-sm:z-40 max-sm:block w-full">
-      <div className="flex items-center justify-between gap-6 bg-surface-low py-4 px-6">
+    <nav
+      aria-label="Mobile navigation"
+      className="hidden max-sm:absolute max-sm:bottom-0 max-sm:z-40 max-sm:block w-full"
+    >
+      <div className="flex items-center justify-between gap-6 bg-surface-low px-6 py-4">
         {projectLinks.slice(0, 2).map((link) => (
-          <div
+          <Link
             key={link.href}
-            className="flex flex-col opacity-70 gap-0.5 items-center justify-center"
+            href={link.href}
+            className="flex flex-col items-center justify-center gap-0.5 opacity-70"
           >
-            <Image src={link.icon} alt={link.label} />
-            <label htmlFor="" className="text-[10px] text-slate-dark">
+            <Image src={link.icon} alt="" />
+
+            <span className="text-[10px] text-slate-dark">
               {link.label}
-            </label>
-          </div>
+            </span>
+          </Link>
         ))}
 
-        <div className="flex flex-col opacity-70 gap-0.5 items-center justify-center">
+        <Link
+          href="/project"
+          className="flex flex-col items-center justify-center gap-0.5 opacity-70"
+        >
           <ProjectsIcon className="shrink-0" />
-          <label htmlFor="" className="text-[10px] text-slate-dark">
+
+          <span className="text-[10px] text-slate-dark">
             Projects
-          </label>
-        </div>
+          </span>
+        </Link>
 
         {projectLinks.slice(2, 4).map((link) => (
-          <div
+          <Link
             key={link.href}
-            className="flex flex-col opacity-70 gap-0.5 items-center justify-center"
+            href={link.href}
+            className="flex flex-col items-center justify-center gap-0.5 opacity-70"
           >
-            <Image src={link.icon} alt={link.label} />
-            <label htmlFor="" className="text-[10px] text-slate-dark">
+            <Image src={link.icon} alt="" />
+
+            <span className="text-[10px] text-slate-dark">
               {link.label}
-            </label>
-          </div>
+            </span>
+          </Link>
         ))}
       </div>
-    </aside>
+    </nav>
   );
 }
 
 export default MobileNav;
+

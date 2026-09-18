@@ -24,7 +24,6 @@ export default function UserInfo() {
         </div>
 
         <div className="h-10 w-10 animate-pulse rounded-lg bg-slate-200" />
-  
       </div>
     );
   }
@@ -33,31 +32,23 @@ export default function UserInfo() {
     return null;
   }
 
-  const name =
-    typeof user.user_metadata?.name === "string"
-      ? user.user_metadata.name
-      : "User";
+  const name = typeof user.user_metadata?.name === "string" ? user.user_metadata.name : "User";
 
   const jobTitle =
-    typeof user.user_metadata?.job_title === "string"
-      ? user.user_metadata.job_title
-      : "";
+    typeof user.user_metadata?.job_title === "string" ? user.user_metadata.job_title : "";
 
   return (
     <div className="flex items-center gap-4">
       <div className="flex max-sm:hidden flex-col items-end ">
-        <p className="truncate text-base font-semibold text-slate-dark">
-          {name}
-        </p>
+        <p className="truncate text-base font-semibold text-slate-dark">{name}</p>
 
-        {jobTitle && (
-          <p className="truncate text-[10px] font-bold text-primary">
-            {jobTitle}
-          </p>
-        )}
+        {jobTitle && <p className="truncate text-[10px] font-bold text-primary">{jobTitle}</p>}
       </div>
 
-       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary-container text-base font-bold text-white">
+      <div
+        aria-label={`Profile of ${name}`}
+        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary-container text-base font-bold text-white"
+      >
         {getInitials(name)}
       </div>
     </div>

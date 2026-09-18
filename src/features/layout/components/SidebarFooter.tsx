@@ -7,18 +7,10 @@ type SidebarFooterProps = {
   onCollapse: () => void;
 };
 
-function SidebarFooter({
-  isCollapsed,
-  onCollapse,
-  isOpen
-}: SidebarFooterProps) {
+function SidebarFooter({ isCollapsed, onCollapse, isOpen }: SidebarFooterProps) {
   return (
     <div className="flex flex-col gap-1">
-      <SidebarCollapseButton
-        isCollapsed={isCollapsed}
-        onClick={onCollapse}
-        isOpen={isOpen}
-      />
+      <SidebarCollapseButton isCollapsed={isCollapsed} onClick={onCollapse} isOpen={isOpen} />
 
       <LogoutButton isCollapsed={isCollapsed} />
     </div>
