@@ -1,0 +1,38 @@
+import Image from "next/image";
+import Link from "next/link";
+import breadcrumbArrow from "@/assets/icons/breadcrumbArrow.svg";
+
+type BreadcrumbItem = {
+  label: string;
+  href?: string;
+};
+
+type BreadcrumbProps = {
+  items: BreadcrumbItem[];
+  currentLabel: string;
+};
+
+export default function Breadcrumb({ items, currentLabel }: BreadcrumbProps) {
+  return (
+    <div className="max-sm:hidden">
+      <nav aria-label="Breadcrumb">
+        <ol className="flex items-center gap-2 text-sm">
+          {items.map((item) => (
+            <li key={item.label} className="flex items-center gap-2">
+              <Link href={item.href ?? "#"} className="text-[#43465499] font-bold text-[12px]">
+                {item.label}
+              </Link>
+
+              <Image src={breadcrumbArrow} alt="" />
+            </li>
+          ))}
+
+          <li className="text-primary font-bold text-[12px]" aria-current="page">
+            {currentLabel}
+          </li>
+        </ol>
+      </nav>
+      <h2 className="mt-4 font-semibold text-4xl text-slate-dark">Add New Project</h2>
+    </div>
+  );
+}
