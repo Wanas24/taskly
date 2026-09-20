@@ -19,9 +19,7 @@ function MobileNav() {
           >
             <Image src={link.icon} alt="" />
 
-            <span className="text-[10px] text-slate-dark">
-              {link.label}
-            </span>
+            <span className="text-[10px] text-slate-dark">{link.label}</span>
           </Link>
         ))}
 
@@ -31,9 +29,7 @@ function MobileNav() {
         >
           <ProjectsIcon className="shrink-0" />
 
-          <span className="text-[10px] text-slate-dark">
-            Projects
-          </span>
+          <span className="text-[10px] text-slate-dark">Projects</span>
         </Link>
 
         {projectLinks.slice(2, 4).map((link) => (
@@ -44,9 +40,7 @@ function MobileNav() {
           >
             <Image src={link.icon} alt="" />
 
-            <span className="text-[10px] text-slate-dark">
-              {link.label}
-            </span>
+            <span className="text-[10px] text-slate-dark">{link.label}</span>
           </Link>
         ))}
       </div>
@@ -55,4 +49,3 @@ function MobileNav() {
 }
 
 export default MobileNav;
-

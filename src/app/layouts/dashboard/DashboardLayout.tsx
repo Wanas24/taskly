@@ -1,16 +1,16 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
+import Sidebar from "./components/Sidebar";
+import Navbar from "./components/Navbar";
+import MobileNav from "./components/MobileNav";
 
-import Navbar from "./Navbar";
-import Sidebar from "./Sidebar";
-import MobileNav from "./MobileNav";
 
-type AuthenticatedLayoutProps = {
+type DashboardLayoutProps = {
   children: ReactNode;
 };
 
-export default function AuthenticatedLayout({ children }: AuthenticatedLayoutProps) {
+export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (

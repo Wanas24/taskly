@@ -1,7 +1,7 @@
-import AuthenticatedLayout from "@/features/layout/components/AuthenticatedLayout";
 import { ReactNode } from "react";
+import DashboardLayout from "../layouts/dashboard/DashboardLayout";
 
 
 export default function ProtectedLayout({ children }: { children: ReactNode }) {
-  return <AuthenticatedLayout>{children}</AuthenticatedLayout>;
+  return <DashboardLayout>{children}</DashboardLayout>;
 }

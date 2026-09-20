@@ -5,9 +5,7 @@ import { useEffect, useState } from "react";
 import { getCurrentUser } from "../services/user.service";
 
 export function useCurrentUser() {
-  const [user, setUser] = useState<Awaited<
-    ReturnType<typeof getCurrentUser>
-  > | null>(null);
+  const [user, setUser] = useState<Awaited<ReturnType<typeof getCurrentUser>> | null>(null);
 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
@@ -22,10 +20,7 @@ export function useCurrentUser() {
 
         setUser(currentUser);
       } catch (error) {
-        const message =
-          error instanceof Error
-            ? error.message
-            : "Failed to load user information.";
+        const message = error instanceof Error ? error.message : "Failed to load user information.";
 
         setError(message);
       } finally {
