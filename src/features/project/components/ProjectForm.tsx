@@ -10,7 +10,8 @@ import Input from "@/components/ui/Input";
 import Textarea from "@/components/ui/Textarea";
 import Button from "@/components/ui/Button";
 
-import { useProject } from "../hooks/useProject";
+import { useCreateProject } from "../hooks/useCreateProject";
+import { useEditProject } from "../hooks/useEditProject";
 import { useUpdateProject } from "../hooks/useUpdateProject";
 
 import {
@@ -18,21 +19,29 @@ import {
   type ProjectFormValues,
 } from "../schemas/create-project.schema";
 
-type EditProjectFormProps = {
-  projectId: string;
+type ProjectFormProps = {
+  projectId?: string;
 };
 
-export default function EditProjectForm({
+export default function ProjectForm({
   projectId,
-}: EditProjectFormProps) {
+}: ProjectFormProps) {
+  const isEditMode = Boolean(projectId);
+
   const {
     project,
     isLoading: isProjectLoading,
     error: projectError,
-  } = useProject(projectId);
+  } = useEditProject(projectId);
 
   const {
-    submitProject,
+    submitProject: createProject,
+    isLoading: isCreating,
+    error: createError,
+  } = useCreateProject();
+
+  const {
+    submitProject: updateProject,
     isLoading: isUpdating,
     error: updateError,
   } = useUpdateProject();
@@ -63,11 +72,24 @@ export default function EditProjectForm({
     });
   }, [project, reset]);
 
-  const onSubmit = async (values: ProjectFormValues) => {
+  const isLoading =
+    isProjectLoading || isCreating || isUpdating;
+
+  const error =
+    projectError || createError || updateError;
+
+  const handleFormSubmit = async (
+    values: ProjectFormValues,
+  ) => {
     setIsSuccess(false);
 
     try {
-      await submitProject(projectId, values);
+      if (isEditMode && projectId) {
+        await updateProject(projectId, values);
+      } else {
+        await createProject(values);
+        reset();
+      }
 
       setIsSuccess(true);
     } catch {
@@ -75,17 +97,16 @@ export default function EditProjectForm({
     }
   };
 
-  if (isProjectLoading) {
+  if (isEditMode && isProjectLoading) {
     return (
       <div className="space-y-6">
         <div className="h-12 w-full animate-pulse rounded-sm bg-surface-low" />
-
         <div className="h-32 w-full animate-pulse rounded-sm bg-surface-low" />
       </div>
     );
   }
 
-  if (projectError) {
+  if (isEditMode && projectError) {
     return (
       <div className="text-sm text-error">
         {projectError}
@@ -95,7 +116,7 @@ export default function EditProjectForm({
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(handleFormSubmit)}
       className="flex flex-col gap-6"
     >
       <Input
@@ -104,7 +125,7 @@ export default function EditProjectForm({
         label="Project Title"
         placeholder="Enter project title"
         error={errors.title?.message}
-        disabled={isUpdating}
+        disabled={isLoading}
         {...register("title")}
       />
 
@@ -114,30 +135,30 @@ export default function EditProjectForm({
         optional
         placeholder="Enter project description"
         error={errors.description?.message}
-        disabled={isUpdating}
+        disabled={isLoading}
         maxLength={500}
         {...register("description")}
       />
 
-      {updateError && (
+      {error && (
         <p
           role="alert"
-          className="text-sm text-error"
+          className="text-center text-sm text-error"
         >
-          {updateError}
+          {error}
         </p>
       )}
 
       {isSuccess && (
         <p
           role="status"
-          className="text-sm text-green-600"
+          className="text-center text-sm text-green-600"
         >
-          Project updated successfully
+          Project {isEditMode ? "updated" : "created"} successfully
         </p>
       )}
 
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between max-sm:flex-col-reverse max-sm:gap-4">
         <Link
           href="/project"
           className="flex h-12 items-center rounded-lg px-6 text-base font-semibold text-slate-dark"
@@ -147,10 +168,16 @@ export default function EditProjectForm({
 
         <Button
           type="submit"
-          disabled={isUpdating}
-          className="disabled:cursor-not-allowed disabled:opacity-60"
+          disabled={isLoading}
+          className="disabled:cursor-not-allowed disabled:opacity-60 max-sm:w-full"
         >
-          {isUpdating ? "Saving..." : "Save Changes"}
+          {isLoading
+            ? isEditMode
+              ? "Saving..."
+              : "Creating..."
+            : isEditMode
+              ? "Save Changes"
+              : "Create Project"}
         </Button>
       </div>
     </form>

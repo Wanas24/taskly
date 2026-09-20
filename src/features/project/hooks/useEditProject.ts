@@ -1,7 +1,5 @@
 "use client";
 
-"use client";
-
 import { useCallback, useEffect, useState } from "react";
 
 import { createClient } from "@/lib/supabase/client";
@@ -9,13 +7,17 @@ import { createClient } from "@/lib/supabase/client";
 import { getProject } from "../services/get-project.service";
 import type { Project } from "../services/get-projects.service";
 
-export function useProject(projectId: string) {
+export function useEditProject(projectId?: string) {
   const [project, setProject] = useState<Project | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(Boolean(projectId));
   const [error, setError] = useState("");
   const [errorStatus, setErrorStatus] = useState<number | null>(null);
 
   const fetchProject = useCallback(async () => {
+    if (!projectId) {
+      return;
+    }
+
     setIsLoading(true);
     setError("");
     setErrorStatus(null);
@@ -42,10 +44,14 @@ export function useProject(projectId: string) {
       setProject(data);
     } catch (error) {
       const message =
-        error instanceof Error ? error.message : "Failed To Get Project, Try Again Later";
+        error instanceof Error
+          ? error.message
+          : "Failed To Get Project, Try Again Later";
 
       const status =
-        error instanceof Error && "status" in error && typeof error.status === "number"
+        error instanceof Error &&
+        "status" in error &&
+        typeof error.status === "number"
           ? error.status
           : null;
 

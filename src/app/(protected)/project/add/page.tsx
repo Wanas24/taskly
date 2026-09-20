@@ -1,6 +1,6 @@
 import ProjectFormCard from "@/features/project/components/ProjectFormCard";
-import CreateProjectForm from "@/features/project/components/CreateProjectForm";
 import Breadcrumb from "@/components/ui/Breadcrumb";
+import ProjectForm from "@/features/project/components/ProjectForm";
 
 export default function AddProjectPage() {
   return (
@@ -16,7 +16,7 @@ export default function AddProjectPage() {
       />
 
       <ProjectFormCard title="Initialize New Project">
-        <CreateProjectForm />
+        <ProjectForm />
       </ProjectFormCard>
     </main>
   );

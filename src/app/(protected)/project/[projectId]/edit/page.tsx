@@ -1,6 +1,6 @@
 import ProjectFormCard from "@/features/project/components/ProjectFormCard";
 import Breadcrumb from "@/components/ui/Breadcrumb";
-import EditProjectForm from "@/features/project/components/EditProjectForm";
+import ProjectForm from "@/features/project/components/ProjectForm";
 
 type EditProjectPageProps = {
   params: Promise<{
@@ -26,7 +26,7 @@ export default async function EditProjectPage({
       />
 
       <ProjectFormCard title="Edit Project">
-        <EditProjectForm projectId={projectId} />
+        <ProjectForm projectId={projectId} />
       </ProjectFormCard>
     </main>
   );
