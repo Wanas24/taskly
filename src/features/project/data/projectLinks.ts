@@ -1,31 +1,38 @@
-import epicsIcon from "@/assets/icons/epics.svg"
-import tasksIcon from "@/assets/icons/tasks.svg"
-import membersIcon from "@/assets/icons/members.svg"
-import detailsIcon from "@/assets/icons/details.svg"
+import epicsIcon from "@/assets/icons/epics.svg";
+import tasksIcon from "@/assets/icons/tasks.svg";
+import membersIcon from "@/assets/icons/members.svg";
+import detailsIcon from "@/assets/icons/details.svg";
 
 export const projectLinks = [
   {
     label: "Epics",
-    href: "/project/epics",
+    path: "epics",
     icon: epicsIcon,
-    
   },
   {
     label: "Tasks",
-    href: "/project/tasks",
+    path: "tasks",
     icon: tasksIcon,
   },
   {
     label: "Members",
-    href: "/project/members",
+    path: "members",
     icon: membersIcon,
   },
   {
     label: "Details",
-    href: "/project/details",
+    path: "edit",
     icon: detailsIcon,
   },
 ];
+
 export const projectCardLinks = projectLinks.filter(
   (link) => link.label !== "Details",
 );
+
+export function getProjectLink(
+  projectId: string,
+  path: string,
+) {
+  return `/projects/${projectId}/${path}`;
+}

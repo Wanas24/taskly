@@ -1,6 +1,9 @@
 import Link from "next/link";
 
-import { projectCardLinks } from "../data/projectLinks";
+import {
+  getProjectLink,
+  projectCardLinks,
+} from "../data/projectLinks";
 import type { Project } from "../services/get-projects.service";
 
 type ProjectCardProps = {
@@ -18,8 +21,10 @@ function formatCreatedAt(date: string) {
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <article className="flex h-full flex-col rounded-lg bg-white p-6 transition-shadow hover:shadow-md">
-      <Link href={`/projects/${project.id}/epics`}>
-        <h2 className="mb-3 line-clamp-2 text-lg font-medium text-slate-dark">{project.name}</h2>
+      <Link href={getProjectLink(project.id, "epics")}>
+        <h2 className="mb-3 line-clamp-2 text-lg font-medium text-slate-dark">
+          {project.name}
+        </h2>
 
         <p className="line-clamp-3 text-sm text-slate-medium">
           {project.description || "No description available."}
@@ -33,8 +38,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
             return (
               <Link
-                key={link.href}
-                href={`/projects/${project.id}/${link.href.split("/").pop()}`}
+                key={link.path}
+                href={getProjectLink(project.id, link.path)}
                 className="flex items-center gap-1 text-primary"
               >
                 <Icon />
@@ -45,7 +50,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
 
         <div className="flex items-center justify-between border-t border-[rgba(195,198,214,0.1)] pt-[18.5px]">
-          <p className="text-[11px] font-bold text-surface-medium">Created At</p>
+          <p className="text-[11px] font-bold text-surface-medium">
+            Created At
+          </p>
 
           <p className="text-sm font-medium text-[#434654]">
             {formatCreatedAt(project.created_at)}

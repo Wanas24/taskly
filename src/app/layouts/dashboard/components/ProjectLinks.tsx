@@ -1,12 +1,19 @@
 import Link from "next/link";
 
-import { projectLinks } from "../../../../features/project/data/projectLinks";
+import {
+  getProjectLink,
+  projectLinks,
+} from "../../../../features/project/data/projectLinks";
 
 type ProjectLinksProps = {
+  projectId: string;
   onLinkClick?: () => void;
 };
 
-export default function ProjectLinks({ onLinkClick }: ProjectLinksProps) {
+export default function ProjectLinks({
+  projectId,
+  onLinkClick,
+}: ProjectLinksProps) {
   return (
     <div className="flex flex-col gap-1">
       {projectLinks.map((link) => {
@@ -14,8 +21,8 @@ export default function ProjectLinks({ onLinkClick }: ProjectLinksProps) {
 
         return (
           <Link
-            key={link.href}
-            href={link.href}
+            key={link.path}
+            href={getProjectLink(projectId, link.path)}
             onClick={onLinkClick}
             className="flex items-center gap-3 rounded-4xl px-3 py-2 text-sm text-slate-dark"
           >

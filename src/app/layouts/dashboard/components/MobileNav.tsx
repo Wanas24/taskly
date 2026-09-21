@@ -15,8 +15,8 @@ function MobileNav() {
 
           return (
             <Link
-              key={link.href}
-              href={link.href}
+              key={link.path}
+              href={link.path}
               className="flex flex-col items-center justify-center gap-0.5 opacity-70"
             >
               <Icon />
@@ -40,8 +40,8 @@ function MobileNav() {
 
           return (
             <Link
-              key={link.href}
-              href={link.href}
+              key={link.path}
+              href={link.path}
               className="flex flex-col items-center justify-center gap-0.5 opacity-70"
             >
               <Icon />
