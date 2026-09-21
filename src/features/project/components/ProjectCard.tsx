@@ -18,7 +18,7 @@ function formatCreatedAt(date: string) {
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <article className="flex h-full flex-col rounded-lg bg-white p-6 transition-shadow hover:shadow-md">
-      <Link href={`/project/${project.id}`}>
+      <Link href={`/project/${project.id}/epics`}>
         <h2 className="mb-3 line-clamp-2 text-lg font-medium text-slate-dark">{project.name}</h2>
 
         <p className="line-clamp-3 text-sm text-slate-medium">
