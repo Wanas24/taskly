@@ -1,6 +1,5 @@
-import circleCheck from "@/assets/icons/circle-check.svg";
-import circleEmpty from "@/assets/icons/circle-empty.svg";
-import Image from "next/image";
+import CircleCheck from "@/assets/icons/circle-check.svg";
+import CircleEmpty from "@/assets/icons/circle-empty.svg";
 
 type PasswordRequirementsProps = {
   minLength: boolean;
@@ -33,8 +32,7 @@ function PasswordRequirements({
       <ul id="password-requirements" aria-live="polite">
         {requirements.map((requirement) => (
           <li key={requirement.text} className="flex gap-2">
-            <Image src={requirement.valid ? circleCheck : circleEmpty} alt="" />
-
+            {requirement.valid ? <CircleCheck/> : <CircleEmpty/>}
             <p className="text-[11px] text-[#434654]">{requirement.text}</p>
           </li>
         ))}

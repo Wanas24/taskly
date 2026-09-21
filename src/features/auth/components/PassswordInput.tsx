@@ -1,13 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import type { ComponentProps } from "react";
 
 import Input from "@/components/ui/Input";
 
-import eyeIcon from "@/assets/icons/eye.svg";
-import eyeOffIcon from "@/assets/icons/eye-off.svg";
+import EyeIcon from "@/assets/icons/eye.svg";
+import EyeOffIcon from "@/assets/icons/eye-off.svg";
 
 type PasswordInputProps = Omit<
   ComponentProps<typeof Input>,
@@ -29,10 +28,7 @@ export default function PasswordInput(props: PasswordInputProps) {
           aria-pressed={showPassword}
           onClick={() => setShowPassword((current) => !current)}
         >
-          <Image
-            src={showPassword ? eyeOffIcon : eyeIcon}
-            alt=""
-          />
+          {showPassword ? <EyeOffIcon/> : <EyeIcon/>}
         </button>
       }
     />

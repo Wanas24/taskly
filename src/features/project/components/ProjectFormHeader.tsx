@@ -1,5 +1,4 @@
-import Image from "next/image";
-import formIcon from "@/assets/icons/form.svg";
+import FormIcon from "@/assets/icons/form.svg";
 
 type ProjectFormHeaderProps = {
   title: string;
@@ -12,7 +11,7 @@ export default function ProjectFormHeader({
     <header>
       <div className="flex items-center gap-4 border-b border-b-surface-low px-8 pb-10 max-sm:px-0">
         <div className="flex items-center justify-center rounded-sm bg-[#0052CC1A] p-3 max-sm:hidden">
-          <Image src={formIcon} alt="" />
+          <FormIcon/>
         </div>
 
         <div className="flex flex-col">

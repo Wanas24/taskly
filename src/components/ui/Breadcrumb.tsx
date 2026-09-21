@@ -1,6 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
-import breadcrumbArrow from "@/assets/icons/breadcrumbArrow.svg";
+import BreadcrumbArrow from "@/assets/icons/breadcrumbArrow.svg";
 
 type BreadcrumbItem = {
   label: string;
@@ -22,8 +21,7 @@ export default function Breadcrumb({ items, currentLabel }: BreadcrumbProps) {
               <Link href={item.href ?? "#"} className="text-[#43465499] font-bold text-[12px]">
                 {item.label}
               </Link>
-
-              <Image src={breadcrumbArrow} alt="" />
+              <BreadcrumbArrow/>
             </li>
           ))}
 

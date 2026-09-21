@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import UserInfo from "./UserInfo";
 import BurgerMenu from "@/assets/icons/burger-menu.svg";
 
