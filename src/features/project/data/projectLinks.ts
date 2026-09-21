@@ -26,3 +26,6 @@ export const projectLinks = [
     icon: detailsIcon,
   },
 ];
+export const projectCardLinks = projectLinks.filter(
+  (link) => link.label !== "Details",
+);
