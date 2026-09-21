@@ -4,12 +4,12 @@ import StatisticsIcon from "@/assets/icons/Statistics";
 export const navigationLinks = [
     {
       label: "Projects",
-      href: "/project",
+      href: "/projects",
       icon: ProjectsIcon,
     },
     {
       label: "Statistics",
-      href: "/project/statistics",
+      href: "/projects/statistics",
       icon: StatisticsIcon,
     },
   ];

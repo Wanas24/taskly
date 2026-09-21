@@ -24,7 +24,7 @@ function MobileNav() {
         ))}
 
         <Link
-          href="/project"
+          href="/projects"
           className="flex flex-col items-center justify-center gap-0.5 opacity-70"
         >
           <ProjectsIcon className="shrink-0" />

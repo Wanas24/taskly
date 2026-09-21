@@ -17,6 +17,7 @@ import {
   projectSchema,
   type ProjectFormValues,
 } from "../schemas/create-project.schema";
+import { useRouter } from "next/navigation";
 
 type ProjectFormProps = {
   projectId?: string;
@@ -46,6 +47,7 @@ export default function ProjectForm({
   } = useUpdateProject();
 
   const [isSuccess, setIsSuccess] = useState(false);
+  const router = useRouter();
 
   const {
     register,
@@ -91,6 +93,7 @@ export default function ProjectForm({
       }
 
       setIsSuccess(true);
+      router.push("/projects");
     } catch {
       setIsSuccess(false);
     }
@@ -159,7 +162,7 @@ export default function ProjectForm({
 
       <div className="flex items-center justify-between max-sm:flex-col-reverse max-sm:gap-4">
         <Link
-          href="/project"
+          href="/projects"
           className="flex h-12 items-center rounded-lg px-6 text-base font-semibold text-slate-dark"
         >
           Back

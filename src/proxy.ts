@@ -30,18 +30,18 @@ export async function proxy(request: NextRequest) {
 
   // Handle home route
   if (pathname === "/") {
-    return NextResponse.redirect(new URL(user ? "/project" : "/login", request.url));
+    return NextResponse.redirect(new URL(user ? "/projects" : "/login", request.url));
   }
 
   // Prevent authenticated users from accessing auth pages
   const isAuthRoute = pathname === "/login" || pathname === "/sign-up";
 
   if (isAuthRoute && user) {
-    return NextResponse.redirect(new URL("/project", request.url));
+    return NextResponse.redirect(new URL("/projects", request.url));
   }
 
   // Protect project routes
-  const isProtectedRoute = pathname.startsWith("/project");
+  const isProtectedRoute = pathname.startsWith("/projects");
 
   if (isProtectedRoute && !user) {
     return NextResponse.redirect(
@@ -51,5 +51,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/login", "/sign-up", "/project/:path*"],
+  matcher: ["/", "/login", "/sign-up", "/projects/:path*"],
 };

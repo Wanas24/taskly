@@ -12,7 +12,7 @@ export default function ProjectPageHeader() {
             Manage and curate your projects </p>
       </div>
 
-      <Link href="/project/add" className="shrink-0 max-sm:hidden">
+      <Link href="/projects/add" className="shrink-0 max-sm:hidden">
         <Button type="button">Create New Project</Button>
       </Link>
     </header>

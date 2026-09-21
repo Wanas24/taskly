@@ -36,7 +36,7 @@ export default function LogInForm() {
     try {
       await login(data);
 
-      router.push("/project");
+      router.push("/projects");
     } catch {
       // Error is already handled by useLogin
     }

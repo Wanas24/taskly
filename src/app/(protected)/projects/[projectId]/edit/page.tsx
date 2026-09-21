@@ -19,7 +19,7 @@ export default async function EditProjectPage({
         items={[
           {
             label: "PROJECTS",
-            href: "/project",
+            href: "/projects",
           },
         ]}
         currentLabel="EDIT PROJECT"

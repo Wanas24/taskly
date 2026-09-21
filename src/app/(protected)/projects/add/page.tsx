@@ -9,7 +9,7 @@ export default function AddProjectPage() {
         items={[
           {
             label: "PROJECTS",
-            href: "/project",
+            href: "/projects",
           },
         ]}
         currentLabel="ADD NEW PROJECT"
