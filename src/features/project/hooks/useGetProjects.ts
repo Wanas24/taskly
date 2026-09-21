@@ -9,7 +9,7 @@ import {
   type Project,
 } from "../services/get-projects.service";
 
-export function useProjects() {
+export function useGetProjects() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
@@ -39,8 +39,15 @@ export function useProjects() {
 
       const data = await getProjects(session.access_token);
 
-      setProjects(data);
-      console.log(data)
+      const latestProjects = [...data]
+        .sort(
+          (a, b) =>
+            new Date(b.created_at).getTime() -
+            new Date(a.created_at).getTime(),
+        )
+        .slice(0, 5);
+
+      setProjects(latestProjects);
     } catch (error) {
       const message =
         error instanceof Error

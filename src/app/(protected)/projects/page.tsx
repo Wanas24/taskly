@@ -7,7 +7,7 @@ import ProjectEmptyState from "@/features/project/components/ProjectEmptyState";
 import ProjectErrorState from "@/features/project/components/ProjectErrorState";
 import ProjectList from "@/features/project/components/ProjectList";
 import ProjectListSkeleton from "@/features/project/components/ProjectListSkeleton";
-import { useProjects } from "@/features/project/hooks/useProjects";
+import { useGetProjects } from "@/features/project/hooks/useGetProjects";
 import ProjectPageHeader from "@/features/project/components/ProjectPageHeader";
 
 export default function ProjectPage() {
@@ -19,7 +19,7 @@ export default function ProjectPage() {
     error,
     errorStatus,
     refetch,
-  } = useProjects();
+  } = useGetProjects();
 
   useEffect(() => {
     if (errorStatus === 401) {
