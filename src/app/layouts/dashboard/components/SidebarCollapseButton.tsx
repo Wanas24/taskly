@@ -1,8 +1,8 @@
 "use client";
 
-import collapseIcon from "@/assets/icons/arrow-left.svg";
+import Image from "next/image";
 
-import SidebarFooterButton from "./SidebarFooterButton";
+import collapseIcon from "@/assets/icons/arrow-left.svg";
 
 type SidebarCollapseButtonProps = {
   isOpen: boolean;
@@ -10,16 +10,28 @@ type SidebarCollapseButtonProps = {
   onClick: () => void;
 };
 
-function SidebarCollapseButton({ isCollapsed, onClick, isOpen }: SidebarCollapseButtonProps) {
+function SidebarCollapseButton({
+  isCollapsed,
+  onClick,
+  isOpen,
+}: SidebarCollapseButtonProps) {
   return (
-    <SidebarFooterButton
-      icon={collapseIcon}
-      label="Collapse"
-      ariaLabel={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-      isCollapsed={isCollapsed}
+    <button
+      type="button"
       onClick={onClick}
-      className={`text-slate-dark ${isOpen ? "hidden" : ""}`}
-    />
+      aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+      className={`flex items-center p-3 text-base font-medium text-slate-dark ${
+        isCollapsed ? "justify-center" : "gap-3"
+      } ${isOpen ? "hidden" : ""}`}
+    >
+      <Image
+        src={collapseIcon}
+        alt=""
+        className="h-5 w-5 shrink-0"
+      />
+
+      {!isCollapsed && <span>Collapse</span>}
+    </button>
   );
 }
 

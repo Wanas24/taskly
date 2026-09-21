@@ -23,7 +23,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     >
       <div
         className={`flex h-full flex-col justify-between p-4 ${
-          isOpen ? "w-full" : isCollapsed ? "w-fit" : "w-[244px]"
+          isOpen ? "w-full" : isCollapsed ? "w-fit" : "w-61"
         }`}
       >
         <div className="flex flex-col gap-8">
