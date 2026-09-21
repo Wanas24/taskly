@@ -1,5 +1,5 @@
-import ProjectsIcon from "@/assets/icons/Projects";
-import StatisticsIcon from "@/assets/icons/Statistics";
+import ProjectsIcon from "@/assets/icons/projects.svg";
+import StatisticsIcon from "@/assets/icons/statistics.svg";
 
 export const navigationLinks = [
     {

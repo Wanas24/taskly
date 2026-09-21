@@ -1,8 +1,6 @@
 "use client";
 
-import Image from "next/image";
-
-import collapseIcon from "@/assets/icons/arrow-left.svg";
+import ArrowLeftIcon from "@/assets/icons/arrow-left.svg";
 
 type SidebarCollapseButtonProps = {
   isOpen: boolean;
@@ -19,16 +17,16 @@ function SidebarCollapseButton({
     <button
       type="button"
       onClick={onClick}
-      aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+      aria-label={
+        isCollapsed
+          ? "Expand sidebar"
+          : "Collapse sidebar"
+      }
       className={`flex items-center p-3 text-base font-medium text-slate-dark ${
         isCollapsed ? "justify-center" : "gap-3"
       } ${isOpen ? "hidden" : ""}`}
     >
-      <Image
-        src={collapseIcon}
-        alt=""
-        className="h-5 w-5 shrink-0"
-      />
+      <ArrowLeftIcon className="h-5 w-5 shrink-0" />
 
       {!isCollapsed && <span>Collapse</span>}
     </button>

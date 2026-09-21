@@ -1,7 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 
-import tasks from "@/assets/icons/tasks.svg";
+import TasksIcon from "@/assets/icons/tasks.svg";
 import type { Project } from "../services/get-projects.service";
 
 type ProjectCardProps = {
@@ -30,12 +29,12 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       </Link>
 
       <div className="mt-auto pt-6">
-        <div className="flex justify-between mb-4">
+        <div className="mb-4 flex justify-between">
           <Link
             href={`/project/${project.id}/epics`}
-            className="flex items-center gap-1"
+            className="flex items-center gap-1 text-primary"
           >
-            <Image src={tasks} alt="" />
+            <TasksIcon/>
             <span>Epics</span>
           </Link>
 
@@ -43,7 +42,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             href={`/project/${project.id}/tasks`}
             className="flex items-center gap-1"
           >
-            <Image src={tasks} alt="" />
+            <TasksIcon />
             <span>Tasks</span>
           </Link>
 
@@ -51,12 +50,12 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             href={`/project/${project.id}/members`}
             className="flex items-center gap-1"
           >
-            <Image src={tasks} alt="" />
+            <TasksIcon />
             <span>Members</span>
           </Link>
         </div>
 
-        <div className="pt-[18.5px] border-t border-[rgba(195,198,214,0.1)] flex items-center justify-between">
+        <div className="flex items-center justify-between border-t border-[rgba(195,198,214,0.1)] pt-[18.5px]">
           <p className="text-[11px] font-bold text-surface-medium">
             Created At
           </p>

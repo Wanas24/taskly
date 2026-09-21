@@ -1,12 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 
 import ProjectLinks from "./ProjectLinks";
 
-import projectIcon from "@/assets/icons/project.svg";
-import arrowTopIcon from "@/assets/icons/arrow-top.svg";
+import ProjectIcon from "@/assets/icons/project.svg";
+import ArrowTopIcon from "@/assets/icons/arrow-top.svg";
 
 type ActiveProjectAccordionProps = {
   isCollapsed: boolean;
@@ -32,10 +31,7 @@ export default function ActiveProjectAccordion({
           aria-expanded={isPopupOpen}
           className="flex w-full items-center justify-center rounded-md p-3 transition hover:bg-surface-highest"
         >
-          <Image
-            src={projectIcon}
-            alt=""
-          />
+          <ProjectIcon />
         </button>
 
         {isPopupOpen && (
@@ -61,19 +57,14 @@ export default function ActiveProjectAccordion({
         } flex w-full items-center justify-between rounded-t-md p-3 text-base font-medium text-slate-dark transition hover:bg-surface-highest`}
       >
         <div className="flex items-center gap-3">
-          <Image
-            src={projectIcon}
-            alt=""
-          />
+          <ProjectIcon />
 
           <span className="text-sm font-semibold text-slate-dark">
             Active Project
           </span>
         </div>
 
-        <Image
-          src={arrowTopIcon}
-          alt=""
+        <ArrowTopIcon
           className={`transition-transform ${
             isOpen ? "" : "rotate-180"
           }`}
@@ -91,4 +82,3 @@ export default function ActiveProjectAccordion({
     </div>
   );
 }
-

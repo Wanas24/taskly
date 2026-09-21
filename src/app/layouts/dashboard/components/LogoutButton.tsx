@@ -1,9 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 
-import logoutIcon from "@/assets/icons/logout.svg";
+import LogoutIcon from "@/assets/icons/logout.svg";
 
 import { createClient } from "@/lib/supabase/client";
 
@@ -42,11 +41,7 @@ export default function LogoutButton({
           isCollapsed ? "justify-center" : "gap-3"
         }`}
       >
-        <Image
-          src={logoutIcon}
-          alt=""
-          className="h-5 w-5 shrink-0"
-        />
+        <LogoutIcon className="h-5 w-5 shrink-0" />
 
         {!isCollapsed && <span>Logout</span>}
       </button>

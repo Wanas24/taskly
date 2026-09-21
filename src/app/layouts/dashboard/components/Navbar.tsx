@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import UserInfo from "./UserInfo";
-import burgerMenu from "@/assets/icons/burger-menu.svg";
+import BurgerMenu from "@/assets/icons/burger-menu.svg";
 
 type NavbarProps = {
   onMenuClick: () => void;
@@ -19,7 +19,7 @@ export default function Navbar({ onMenuClick }: NavbarProps) {
             aria-label="Open navigation menu"
             className="flex h-5 w-6.5  items-center justify-center"
           >
-            <Image src={burgerMenu} alt="" />
+            <BurgerMenu/>
           </button>
           <h2 className="font-bold text-xl uppercase text-slate-dark">Taskly</h2>
         </div>
