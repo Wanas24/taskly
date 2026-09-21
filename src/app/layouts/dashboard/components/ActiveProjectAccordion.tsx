@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 import ProjectLinks from "./ProjectLinks";
@@ -11,11 +12,19 @@ type ActiveProjectAccordionProps = {
   isCollapsed: boolean;
 };
 
-export default function ActiveProjectAccordion({
-  isCollapsed,
-}: ActiveProjectAccordionProps) {
-  const [isOpen, setIsOpen] = useState(true);
+export default function ActiveProjectAccordion({ isCollapsed }: ActiveProjectAccordionProps) {
+  const pathname = usePathname();
+
+  const [isOpen, setIsOpen] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const projectId = pathname.match(/^\/projects\/([^/]+)/)?.[1];
+
+  const isProjectRoute = Boolean(projectId) && projectId !== "add";
+
+  if (!isProjectRoute) {
+    return null;
+  }
 
   if (isCollapsed) {
     return (
@@ -23,11 +32,7 @@ export default function ActiveProjectAccordion({
         <button
           type="button"
           onClick={() => setIsPopupOpen((prev) => !prev)}
-          aria-label={
-            isPopupOpen
-              ? "Close active project menu"
-              : "Open active project menu"
-          }
+          aria-label={isPopupOpen ? "Close active project menu" : "Open active project menu"}
           aria-expanded={isPopupOpen}
           className="flex w-full items-center justify-center rounded-md p-3 transition hover:bg-surface-highest"
         >
@@ -35,10 +40,8 @@ export default function ActiveProjectAccordion({
         </button>
 
         {isPopupOpen && (
-          <div className="absolute left-[calc(100%+16px)] top-0 z-50 w-56 rounded-e-md bg-surface-highest p-2 backdrop-filter: blur(20px)">
-            <ProjectLinks
-              onLinkClick={() => setIsPopupOpen(false)}
-            />
+          <div className="absolute left-[calc(100%+16px)] top-0 z-50 w-56 rounded-e-md bg-surface-highest p-2">
+            <ProjectLinks onLinkClick={() => setIsPopupOpen(false)} />
           </div>
         )}
       </div>
@@ -59,23 +62,14 @@ export default function ActiveProjectAccordion({
         <div className="flex items-center gap-3">
           <ProjectIcon />
 
-          <span className="text-sm font-semibold text-slate-dark">
-            Active Project
-          </span>
+          <span className="text-sm font-semibold text-slate-dark">Active Project</span>
         </div>
 
-        <ArrowTopIcon
-          className={`transition-transform ${
-            isOpen ? "" : "rotate-180"
-          }`}
-        />
+        <ArrowTopIcon className={`transition-transform ${isOpen ? "" : "rotate-180"}`} />
       </button>
 
       {isOpen && (
-        <div
-          id="active-project-links"
-          className="flex flex-col gap-1 rounded-b-md bg-white p-2"
-        >
+        <div id="active-project-links" className="flex flex-col gap-1 rounded-b-md bg-white p-2">
           <ProjectLinks />
         </div>
       )}
