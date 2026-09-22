@@ -18,11 +18,11 @@ export default async function EditProjectPage({
       <Breadcrumb
         items={[
           {
-            label: "PROJECTS",
+            label: "projects",
             href: "/projects",
           },
         ]}
-        currentLabel="EDIT PROJECT"
+        currentLabel="edit project"
       />
 
       <ProjectFormCard title="Edit Project">

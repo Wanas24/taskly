@@ -8,11 +8,11 @@ export default function AddProjectPage() {
       <Breadcrumb
         items={[
           {
-            label: "PROJECTS",
+            label: "projects",
             href: "/projects",
           },
         ]}
-        currentLabel="ADD NEW PROJECT"
+        currentLabel="add new project"
       />
 
       <ProjectFormCard title="Initialize New Project">

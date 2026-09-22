@@ -15,7 +15,7 @@ export default function Breadcrumb({ items, currentLabel }: BreadcrumbProps) {
   return (
     <div className="max-sm:hidden">
       <nav aria-label="Breadcrumb">
-        <ol className="flex items-center gap-2 text-sm">
+        <ol className="flex items-center gap-2 text-sm uppercase">
           {items.map((item) => (
             <li key={item.label} className="flex items-center gap-2">
               <Link href={item.href ?? "#"} className="text-[#43465499] font-bold text-[12px]">
@@ -30,7 +30,7 @@ export default function Breadcrumb({ items, currentLabel }: BreadcrumbProps) {
           </li>
         </ol>
       </nav>
-      <h2 className="mt-4 font-semibold text-4xl text-slate-dark">Add New Project</h2>
+      <h2 className="mt-4 font-semibold text-4xl text-slate-dark capitalize">{currentLabel}</h2>
     </div>
   );
 }
