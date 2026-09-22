@@ -26,7 +26,7 @@ function SidebarCollapseButton({
         isCollapsed ? "justify-center" : "gap-3"
       } ${isOpen ? "hidden" : ""}`}
     >
-      <ArrowLeftIcon className="h-5 w-5 shrink-0" />
+      <ArrowLeftIcon className={`h-5 w-5 shrink-0 ${isCollapsed ? "scale-x-[-1]" : ""}`} />
 
       {!isCollapsed && <span>Collapse</span>}
     </button>
