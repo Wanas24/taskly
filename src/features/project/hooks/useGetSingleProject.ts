@@ -4,10 +4,10 @@ import { useCallback, useEffect, useState } from "react";
 
 import { createClient } from "@/lib/supabase/client";
 
-import { getProject } from "../services/get-project.service";
+import { getSingleProject } from "../services/get-single-project.service";
 import type { Project } from "../services/get-projects.service";
 
-export function useEditProject(projectId?: string) {
+export function useGetSingleProject(projectId?: string) {
   const [project, setProject] = useState<Project | null>(null);
   const [isLoading, setIsLoading] = useState(Boolean(projectId));
   const [error, setError] = useState("");
@@ -39,7 +39,7 @@ export function useEditProject(projectId?: string) {
         throw error;
       }
 
-      const data = await getProject(projectId, session.access_token);
+      const data = await getSingleProject(projectId, session.access_token);
 
       setProject(data);
     } catch (error) {

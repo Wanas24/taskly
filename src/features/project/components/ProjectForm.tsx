@@ -10,29 +10,24 @@ import Textarea from "@/components/ui/Textarea";
 import Button from "@/components/ui/Button";
 
 import { useCreateProject } from "../hooks/useCreateProject";
-import { useEditProject } from "../hooks/useEditProject";
+import { useGetSingleProject } from "../hooks/useGetSingleProject";
 import { useUpdateProject } from "../hooks/useUpdateProject";
 
-import {
-  projectSchema,
-  type ProjectFormValues,
-} from "../schemas/create-project.schema";
+import { projectSchema, type ProjectFormValues } from "../schemas/create-project.schema";
 import { useRouter } from "next/navigation";
 
 type ProjectFormProps = {
   projectId?: string;
 };
 
-export default function ProjectForm({
-  projectId,
-}: ProjectFormProps) {
+export default function ProjectForm({ projectId }: ProjectFormProps) {
   const isEditMode = Boolean(projectId);
 
   const {
     project,
     isLoading: isProjectLoading,
     error: projectError,
-  } = useEditProject(projectId);
+  } = useGetSingleProject(projectId);
 
   const {
     submitProject: createProject,
@@ -73,15 +68,11 @@ export default function ProjectForm({
     });
   }, [project, reset]);
 
-  const isLoading =
-    isProjectLoading || isCreating || isUpdating;
+  const isLoading = isProjectLoading || isCreating || isUpdating;
 
-  const error =
-    projectError || createError || updateError;
+  const error = projectError || createError || updateError;
 
-  const handleFormSubmit = async (
-    values: ProjectFormValues,
-  ) => {
+  const handleFormSubmit = async (values: ProjectFormValues) => {
     setIsSuccess(false);
 
     try {
@@ -109,18 +100,11 @@ export default function ProjectForm({
   }
 
   if (isEditMode && projectError) {
-    return (
-      <div className="text-sm text-error">
-        {projectError}
-      </div>
-    );
+    return <div className="text-sm text-error">{projectError}</div>;
   }
 
   return (
-    <form
-      onSubmit={handleSubmit(handleFormSubmit)}
-      className="flex flex-col gap-6"
-    >
+    <form onSubmit={handleSubmit(handleFormSubmit)} className="flex flex-col gap-6">
       <Input
         id="title"
         type="text"
@@ -143,19 +127,13 @@ export default function ProjectForm({
       />
 
       {error && (
-        <p
-          role="alert"
-          className="text-center text-sm text-error"
-        >
+        <p role="alert" className="text-center text-sm text-error">
           {error}
         </p>
       )}
 
       {isSuccess && (
-        <p
-          role="status"
-          className="text-center text-sm text-green-600"
-        >
+        <p role="status" className="text-center text-sm text-green-600">
           Project {isEditMode ? "updated" : "created"} successfully
         </p>
       )}

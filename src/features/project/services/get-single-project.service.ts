@@ -1,6 +1,6 @@
 import type { Project } from "./get-projects.service";
 
-export async function getProject(
+export async function getSingleProject(
   projectId: string,
   accessToken: string,
 ) {

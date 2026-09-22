@@ -8,7 +8,7 @@ import ArrowTopIcon from "@/assets/icons/arrow-top.svg";
 
 import ProjectLinks from "./ProjectLinks";
 
-import { useEditProject } from "../../../../features/project/hooks/useEditProject";
+import { useGetSingleProject } from "../../../../features/project/hooks/useGetSingleProject";
 
 type ActiveProjectAccordionProps = {
   isCollapsed: boolean;
@@ -28,7 +28,7 @@ export default function ActiveProjectAccordion({
 
   const isProjectRoute = Boolean(projectId) && projectId !== "add";
 
-  const { project } = useEditProject(isProjectRoute ? projectId : undefined);
+  const { project } = useGetSingleProject(isProjectRoute ? projectId : undefined);
 
   if (!isProjectRoute || !projectId) {
     return null;
