@@ -3,9 +3,10 @@ import { navigationLinks } from "../../../../features/project/data/navigationLin
 
 type SidebarLinksProps = {
   isCollapsed: boolean;
+  onClose: () => void;
 };
 
-function SidebarLinks({ isCollapsed }: SidebarLinksProps) {
+function SidebarLinks({ isCollapsed, onClose }: SidebarLinksProps) {
   return (
     <nav className="flex flex-col gap-1">
       {navigationLinks.map((link) => {
@@ -13,6 +14,7 @@ function SidebarLinks({ isCollapsed }: SidebarLinksProps) {
 
         return (
           <Link
+            onClick={onClose}
             key={link.href}
             href={link.href}
             aria-label={isCollapsed ? link.label : undefined}

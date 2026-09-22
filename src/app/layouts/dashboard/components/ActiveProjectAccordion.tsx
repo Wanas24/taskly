@@ -12,28 +12,23 @@ import { useEditProject } from "../../../../features/project/hooks/useEditProjec
 
 type ActiveProjectAccordionProps = {
   isCollapsed: boolean;
+  onClose: () => void;
 };
 
 export default function ActiveProjectAccordion({
   isCollapsed,
+  onClose,
 }: ActiveProjectAccordionProps) {
   const pathname = usePathname();
 
   const [isOpen, setIsOpen] = useState(true);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const projectId = pathname.match(
-    /^\/projects\/([^/]+)/
-  )?.[1];
+  const projectId = pathname.match(/^\/projects\/([^/]+)/)?.[1];
 
-  const isProjectRoute =
-    Boolean(projectId) && projectId !== "add";
+  const isProjectRoute = Boolean(projectId) && projectId !== "add";
 
-  const {
-    project,
-  } = useEditProject(
-    isProjectRoute ? projectId : undefined,
-  );
+  const { project } = useEditProject(isProjectRoute ? projectId : undefined);
 
   if (!isProjectRoute || !projectId) {
     return null;
@@ -47,11 +42,7 @@ export default function ActiveProjectAccordion({
         <button
           type="button"
           onClick={() => setIsPopupOpen((prev) => !prev)}
-          aria-label={
-            isPopupOpen
-              ? "Close active project menu"
-              : "Open active project menu"
-          }
+          aria-label={isPopupOpen ? "Close active project menu" : "Open active project menu"}
           aria-expanded={isPopupOpen}
           className="flex w-full items-center justify-center rounded-md p-3 transition hover:bg-surface-highest"
         >
@@ -62,7 +53,10 @@ export default function ActiveProjectAccordion({
           <div className="absolute left-[calc(100%+16px)] top-0 z-50 w-56 rounded-e-md bg-surface-highest p-2">
             <ProjectLinks
               projectId={projectId}
-              onLinkClick={() => setIsPopupOpen(false)}
+              onLinkClick={() => {
+                setIsPopupOpen(false);
+                onClose();
+              }}
             />
           </div>
         )}
@@ -84,24 +78,15 @@ export default function ActiveProjectAccordion({
         <div className="flex min-w-0 items-center gap-3">
           <ProjectIcon />
 
-          <span className="truncate text-sm font-semibold text-slate-dark">
-            {projectTitle}
-          </span>
+          <span className="truncate text-sm font-semibold text-slate-dark">{projectTitle}</span>
         </div>
 
-        <ArrowTopIcon
-          className={`shrink-0 transition-transform ${
-            isOpen ? "" : "rotate-180"
-          }`}
-        />
+        <ArrowTopIcon className={`shrink-0 transition-transform ${isOpen ? "" : "rotate-180"}`} />
       </button>
 
       {isOpen && (
-        <div
-          id="active-project-links"
-          className="flex flex-col gap-1 rounded-b-md bg-white p-2"
-        >
-          <ProjectLinks projectId={projectId} />
+        <div id="active-project-links" className="flex flex-col gap-1 rounded-b-md bg-white p-2">
+          <ProjectLinks projectId={projectId} onLinkClick={onClose} />
         </div>
       )}
     </div>

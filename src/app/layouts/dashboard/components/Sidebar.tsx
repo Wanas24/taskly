@@ -29,9 +29,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         <div className="flex flex-col gap-8">
           <SidebarHeader isOpen={isOpen} onClose={onClose} isCollapsed={isCollapsed} />
 
-          <SidebarLinks isCollapsed={isCollapsed} />
+          <SidebarLinks onClose={onClose} isCollapsed={isCollapsed} />
 
-          <ActiveProjectAccordion isCollapsed={isCollapsed} />
+          <ActiveProjectAccordion onClose={onClose} isCollapsed={isCollapsed} />
         </div>
 
         <div className="border-t border-[#C3C6D633] pt-6">
