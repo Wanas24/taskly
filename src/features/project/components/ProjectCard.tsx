@@ -43,7 +43,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 className="flex items-center gap-1 text-primary"
               >
                 <Icon />
-                <span>{link.label}</span>
+                <span className="text-[10px]">{link.label}</span>
               </Link>
             );
           })}

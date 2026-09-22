@@ -2,6 +2,7 @@ import epicsIcon from "@/assets/icons/epics.svg";
 import tasksIcon from "@/assets/icons/tasks.svg";
 import membersIcon from "@/assets/icons/members.svg";
 import detailsIcon from "@/assets/icons/details.svg";
+import editIcon from "@/assets/icons/edit.svg";
 
 export const projectLinks = [
   {
@@ -26,9 +27,14 @@ export const projectLinks = [
   },
 ];
 
-export const projectCardLinks = projectLinks.filter(
-  (link) => link.label !== "Details",
-);
+export const projectCardLinks = [
+  ...projectLinks.filter((link) => link.label !== "Details"),
+  {
+    label: "Edit",
+    path: "edit",
+    icon: editIcon,
+  },
+];
 
 export function getProjectLink(
   projectId: string,
