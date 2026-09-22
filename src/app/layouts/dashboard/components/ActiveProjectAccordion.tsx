@@ -19,7 +19,7 @@ export default function ActiveProjectAccordion({
 }: ActiveProjectAccordionProps) {
   const pathname = usePathname();
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const projectId = pathname.match(
