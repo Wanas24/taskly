@@ -15,7 +15,7 @@ export default function ProjectEmptyState() {
         begin tracking tasks and epics.
       </p>
 
-      <Link href="/project/add" className="mt-10.75">
+      <Link href="/projects/add" className="mt-10.75">
         <Button type="button">Create New Project</Button>
       </Link>
     </div>
