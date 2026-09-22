@@ -3,20 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import {
-  getProjectLink,
-  projectLinks,
-} from "../../../../features/project/data/projectLinks";
+import { getProjectLink, projectLinks } from "../../../../features/project/data/projectLinks";
 
 type ProjectLinksProps = {
   projectId: string;
   onLinkClick?: () => void;
 };
 
-export default function ProjectLinks({
-  projectId,
-  onLinkClick,
-}: ProjectLinksProps) {
+export default function ProjectLinks({ projectId, onLinkClick }: ProjectLinksProps) {
   const pathname = usePathname();
 
   return (
