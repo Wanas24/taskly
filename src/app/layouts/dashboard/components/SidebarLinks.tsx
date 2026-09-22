@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { navigationLinks } from "../../../../features/project/data/navigationLinks";
+import { navigationLinks } from "../data/navigationLinks";
 
 type SidebarLinksProps = {
   isCollapsed: boolean;
