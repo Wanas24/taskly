@@ -1,10 +1,10 @@
 import Link from "next/link";
 
 import {
-  getProjectLink,
   projectCardLinks,
 } from "../data/projectLinks";
 import type { Project } from "../services/get-projects.service";
+import { getProjectLink } from "../utils/getProjectLink";
 
 type ProjectCardProps = {
   project: Project;

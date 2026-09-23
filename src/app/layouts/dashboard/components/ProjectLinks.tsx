@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { getProjectLink, projectLinks } from "../../../../features/project/data/projectLinks";
+import { projectLinks } from "../../../../features/project/data/projectLinks";
+import { getProjectLink } from "@/features/project/utils/getProjectLink";
 
 type ProjectLinksProps = {
   projectId: string;

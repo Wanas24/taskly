@@ -6,9 +6,9 @@ import { usePathname } from "next/navigation";
 import ProjectsIcon from "@/assets/icons/projects.svg";
 
 import {
-  getProjectLink,
   projectLinks,
 } from "../../../../features/project/data/projectLinks";
+import { getProjectLink } from "@/features/project/utils/getProjectLink";
 
 function MobileNav() {
   const pathname = usePathname();

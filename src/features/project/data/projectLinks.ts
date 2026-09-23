@@ -35,10 +35,3 @@ export const projectCardLinks = [
     icon: editIcon,
   },
 ];
-
-export function getProjectLink(
-  projectId: string,
-  path: string,
-) {
-  return `/projects/${projectId}/${path}`;
-}
