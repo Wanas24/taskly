@@ -5,6 +5,7 @@ import { useState } from "react";
 import LogoutIcon from "@/assets/icons/logout.svg";
 
 import { createClient } from "@/lib/supabase/client";
+import { useRouter } from "next/navigation";
 
 type LogoutButtonProps = {
   isCollapsed: boolean;
@@ -14,7 +15,7 @@ export default function LogoutButton({
   isCollapsed,
 }: LogoutButtonProps) {
   const [error, setError] = useState("");
-
+  const router = useRouter();
   const handleLogout = async () => {
     setError("");
 
@@ -28,7 +29,7 @@ export default function LogoutButton({
       return;
     }
 
-    window.location.href = "/login";
+    router.push("/login");
   };
 
   return (
