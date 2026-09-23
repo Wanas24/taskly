@@ -73,7 +73,7 @@ export default function ForgotPasswordForm() {
         <Button
           className="w-full disabled:cursor-not-allowed disabled:bg-slate-300 disabled:text-slate-500 disabled:opacity-100"
           type="submit"
-          disabled={isLoading || remainingSeconds > 0 || resendAttempts >= maxResendAttempts}
+          disabled={isButtonDisabled}
         >
           {isLoading ? "Sending..." : isSuccess ? "Resend Reset Link" : "Send Reset Link"}
         </Button>
