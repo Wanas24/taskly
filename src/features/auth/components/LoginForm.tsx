@@ -75,7 +75,7 @@ export default function LogInForm() {
             Remember Me
           </label>
         </div>
-        <Link href="/forget-password" className="font-medium text-sm text-primary">
+        <Link href="/forgot-password" className="font-medium text-sm text-primary">
           Forgot Password?
         </Link>
       </div>

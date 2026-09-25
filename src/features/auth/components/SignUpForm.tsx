@@ -1,20 +1,22 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { signUpSchema, type SignUpFormData } from "../schemas/signup.schema";
+import {
+  signUpSchema,
+  type SignUpFormData,
+} from "../schemas/signup.schema";
 
 import { useSignUp } from "../hooks/useSignUp";
 import Input from "@/components/ui/Input";
-
 import Button from "@/components/ui/Button";
 import AuthFormHeader from "./AuthFormHeader";
 import AuthFormFooter from "./AuthFormFooter";
 import Alert from "@/components/ui/Alert";
-import PasswordRequirementsField from "./PasswordRequirementsField";
 import PasswordInput from "./PassswordInput";
+import PasswordRequirements from "./PasswordRequirements";
 import AuthFormCard from "./AuthFormCard";
 
 export default function SignUpForm() {
@@ -28,6 +30,13 @@ export default function SignUpForm() {
     formState: { errors, isSubmitting },
   } = useForm<SignUpFormData>({
     resolver: zodResolver(signUpSchema),
+    mode:"onBlur"
+  });
+
+  const password = useWatch({
+    control,
+    name: "password",
+    defaultValue: "",
   });
 
   const onSubmit = async (data: SignUpFormData) => {
@@ -72,6 +81,7 @@ export default function SignUpForm() {
         {...register("jobTitle")}
         error={errors.jobTitle?.message}
       />
+
       <div className="flex gap-4 max-sm:flex-col max-sm:gap-0">
         <PasswordInput
           id="password"
@@ -93,13 +103,21 @@ export default function SignUpForm() {
 
       <Alert message={apiError} />
 
-      <PasswordRequirementsField control={control} />
+      <PasswordRequirements password={password} />
 
-      <Button className="w-full" type="submit" disabled={isSubmitting}>
+      <Button
+        className="w-full"
+        type="submit"
+        disabled={isSubmitting}
+      >
         {isSubmitting ? "Creating account..." : "Create account"}
       </Button>
 
-      <AuthFormFooter text="Already have an account?" route="/login" routeText="Log in" />
+      <AuthFormFooter
+        text="Already have an account?"
+        route="/login"
+        routeText="Log in"
+      />
     </AuthFormCard>
   );
 }
